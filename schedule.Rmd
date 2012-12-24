@@ -1,0 +1,95 @@
+Workshop Schedule
+========================================================
+
+**Location**: [Marriott Marquis San Diego](http://www.marriott.com/hotels/maps/travel/sandt-san-diego-marriott-marquis-and-marina/) in the [Carlsbad/Cardiff Rooms](http://www.marriott.com/hotelwebsites/us/s/sandt/SANDT_PDF/SANDT%20All-FloorDiagram2012-Color.pdf): South Tower --- Level 3
+
+#### 9am: Functions and Parameters
+
+[Introductory activity](Activities/Introduction/introductory-activity.html)
+
+Technology: Accessing the web server and RStudio
+
+Assignment: Data and eyeballing parameters.
+* Introduction to enough R to let them load and plot data
+    * `fetchData()`
+    * `plotPoints()`
+* Load in the data files and find the parameters.  Data files illustrate several of the function types:
+    * Income-housing for exponential.
+    * `stan-data.csv` for exponential.
+    * tides for sine wave
+    * atomic bomb for power law
+    * gaussian and its cumulative as an S-curve
+    * logistic function
+
+
+What are
+
+#### 10:15 break
+
+#### 10:30 Theme Fitting
+
+Manifest versus latent function forms:
+* Income-Housing (manifest form)
+* Space-Shuttle
+
+* How to use `fitModel`
+* The criteria for `fitModel`
+
+A bit about statistical processes: the standard error of parameters.
+
+#### Noon 
+
+Lunch at the Marina Kitchen in the Marriott.  Free to participants.
+
+#### 1:15 resume
+
+
+
+Approximation
+* Linearization
+    * Hooke's Law
+    * Newton's Law of cooling
+* Polynomials, Taylor series and least squares
+* Sine waves and orthogonality.
+
+
+Power laws and where they come from:
+* Units
+* Dimensional analysis
+
+
+
+#### 2:15 break
+
+
+#### 2:30
+
+Functions in two variables
+
+* The Ideal Gas Law and the Law of Mass Action
+* The landscape functions: mountain, valley, slope, amphitheater
+
+The modeling polynomial: 2nd order in two variables
+* picking model terms
+* Fitting and interpreting
+   * Used car prices
+
+Stating partial derivatives
+* Celebrity Divorce: is it a reasonable model?
+* 
+
+#### 4:00 Adjourn
+
+-------------
+
+### Lunch Menu
+
+Choice of:
+* Grilled Flat Iron Steak Salad with Butter Lettuce, Arugula, Roasted Tomato, Beef Bacon and Balsamic Blue Cheese Dressing 
+* Chicken Mozzarella Sandwich served Warm with Arugula Sun Dried Tomato Tapenade - $15.00 per person 
+* Grilled Portobello Mushroom Sandwich with Zucchini and Goat Cheese - $15.00 per person
+ 
+Desert:
+Mini Slice of Daily New York Style Cheesecake - $4.00 per person
+ 
+Coffee, tea, iced tea and soft drinks included with meal.

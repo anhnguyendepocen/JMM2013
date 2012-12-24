@@ -1,0 +1,22 @@
+Introductory Activity
+========================================================
+
+Break into groups of 3 people. 
+* Introduce yourselves and find out enough about your group-mates that you can introduce them.  
+* Give your group a name
+
+After the introductions, you'll reconvene in your groups and carry out these assignments:
+
+
+
+* One of these two topics
+    * Why are you teaching calculus?  What are your goals?
+    * Students by and large take calculus because they are required to or because they have been told to.  What are the good reasons why students should take calculus?  What should they be getting out of the course: what concepts, what skills?
+* Make a list of the basic functions that students should learn in calculus.
+    * For each function, give two settings where that function is important:
+        1. Within calculus
+        2. Ouside of calculus, e.g. in applications
+    * Think of your functions as parameterized families of functions.  
+        1. What parameters should be used?
+        2. Give a reasonable alternative parameterization.
+        2. Explain your choice of one parameterization over the other. What operations does one make easier than the other?
