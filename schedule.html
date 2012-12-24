@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Workshop Schedule</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Workshop Schedule</h1>
+
+<p><strong>Location</strong>: <a href="http://www.marriott.com/hotels/maps/travel/sandt-san-diego-marriott-marquis-and-marina/">Marriott Marquis San Diego</a> in the <a href="http://www.marriott.com/hotelwebsites/us/s/sandt/SANDT_PDF/SANDT%20All-FloorDiagram2012-Color.pdf">Carlsbad/Cardiff Rooms</a>: South Tower &mdash; Level 3</p>
+
+<h4>9am: Functions and Parameters</h4>
+
+<p><a href="Activities/Introduction/introductory-activity.html">Introductory activity</a></p>
+
+<p>Technology: Accessing the web server and RStudio</p>
+
+<p>Assignment: Data and eyeballing parameters.</p>
+
+<ul>
+<li>Introduction to enough R to let them load and plot data
+
+<ul>
+<li><code>fetchData()</code></li>
+<li><code>plotPoints()</code></li>
+</ul></li>
+<li>Load in the data files and find the parameters.  Data files illustrate several of the function types:
+
+<ul>
+<li>Exponentials
+
+<ul>
+<li>Income-housing for exponential. <a href="http://rpubs.com/dtkaplan/558">exercise</a></li>
+<li><code>stan-data.csv</code> for exponential. <a href="http://rpubs.com/dtkaplan/558">Is cooling exponential?</a></li>
+</ul></li>
+<li>Trigonometric
+
+<ul>
+<li>tides for sine wave <a href="http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html">from PREP2012</a></li>
+</ul></li>
+<li>Power Law
+
+<ul>
+<li>atomic bomb radius versus time</li>
+</ul></li>
+<li>S-curves
+
+<ul>
+<li>gaussian and its cumulative as an S-curve</li>
+<li>logistic function</li>
+<li><a href="http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html">Hill function</a></li>
+</ul></li>
+<li>Gaussian bump 
+
+<ul>
+<li>Ben Baumer&#39;s shortstop example</li>
+</ul></li>
+<li>Quadratic
+
+<ul>
+<li>Kepler&#39;s orbit</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h5>Possible examples</h5>
+
+<ul>
+<li><a href="http://prep2012.mosaic-web.org/Topics/Functions/WorldPopulation.html">World Population example</a></li>
+</ul>
+
+<h4>10:15 break</h4>
+
+<h4>10:30 Theme Fitting</h4>
+
+<h5>Calculus Operations</h5>
+
+<p>ACTIVITY: </p>
+
+<ul>
+<li>Write a function that returns a function that is a constant, linear, or quadratic approximation to a given function at any point.</li>
+<li>(Maybe for PREP 2013).  Find the curvature of a function at any point, and plot out the associated circle along the graph.  (A nice trigonometric exercise.)<br/>
+
+<ul>
+<li>Add a <code>plotPath()</code> function to mosaic: <code>plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))</code></li>
+</ul></li>
+</ul>
+
+<h4>Unknown Function Forms</h4>
+
+<ul>
+<li>Flow of orange joice via spline <a href="http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html">from PREP 2012</a></li>
+<li>Traffic light capacity (integrating a hill function). <a href="http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html">from PREP 2012</a></li>
+<li><a href="https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf">Maximum heart rate versus age</a>.  Get the data.  <a href="http://en.wikipedia.org/wiki/Heart_rate">Wikipedia article</a></li>
+</ul>
+
+<p>Manifest versus latent function forms:</p>
+
+<ul>
+<li>Income-Housing (manifest form)</li>
+<li><p>Space-Shuttle</p></li>
+<li><p>How to use <code>fitModel</code></p></li>
+<li><p>The criteria for <code>fitModel</code></p></li>
+</ul>
+
+<p>A bit about statistical processes: the standard error of parameters.</p>
+
+<h4>Noon</h4>
+
+<p>Lunch at the Marina Kitchen in the Marriott.  Free to participants.</p>
+
+<h4>1:15 resume</h4>
+
+<p>Approximation</p>
+
+<ul>
+<li>Linearization
+
+<ul>
+<li>Hooke&#39;s Law</li>
+<li>Newton&#39;s Law of cooling</li>
+</ul></li>
+<li>Polynomials, Taylor series and least squares</li>
+<li>Sine waves and orthogonality.</li>
+</ul>
+
+<p>Power laws and where they come from:</p>
+
+<ul>
+<li>Units &amp; Dimensional analysis
+
+<ul>
+<li>Analysis of atomic bomb</li>
+</ul></li>
+<li>Allometrics
+
+<ul>
+<li>Relationships in the internal combustion engine</li>
+<li>Need some data from biology</li>
+</ul></li>
+</ul>
+
+<h4>2:15 break</h4>
+
+<h4>2:30</h4>
+
+<p>Functions in two variables</p>
+
+<ul>
+<li>The Ideal Gas Law and the Law of Mass Action <a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf">PREP 2012</a></li>
+<li><a href="http://prep2012.mosaic-web.org/Topics/Cobb-Douglas/cobb-douglas.html">Cobb-Douglas</a></li>
+<li>The landscape functions: <a href="http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png">mountain</a>, valley, <a href="http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png">hillside</a>, amphitheater</li>
+</ul>
+
+<p>The modeling polynomial: 2nd order in two variables</p>
+
+<ul>
+<li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf">picking model terms</a></li>
+<li>Fitting and interpreting
+
+<ul>
+<li>Used car prices</li>
+</ul></li>
+</ul>
+
+<p>Stating partial derivatives</p>
+
+<ul>
+<li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf">Celebrity Divorce</a>: is it a reasonable model?</li>
+</ul>
+
+<p>Optimization</p>
+
+<ul>
+<li><a href="http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html">Health policy example</a></li>
+</ul>
+
+<h4>4:00 Adjourn</h4>
+
+<hr/>
+
+<h3>Lunch Menu</h3>
+
+<p>Choice of:</p>
+
+<ul>
+<li>Grilled Flat Iron Steak Salad with Butter Lettuce, Arugula, Roasted Tomato, Beef Bacon and Balsamic Blue Cheese Dressing </li>
+<li>Chicken Mozzarella Sandwich served Warm with Arugula Sun Dried Tomato Tapenade - $15.00 per person </li>
+<li>Grilled Portobello Mushroom Sandwich with Zucchini and Goat Cheese - $15.00 per person</li>
+</ul>
+
+<p>Desert:
+Mini Slice of Daily New York Style Cheesecake - $4.00 per person</p>
+
+<p>Coffee, tea, iced tea and soft drinks included with meal.</p>
+
+</body>
+
+</html>
+

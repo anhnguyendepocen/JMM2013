@@ -14,19 +14,42 @@ Assignment: Data and eyeballing parameters.
     * `fetchData()`
     * `plotPoints()`
 * Load in the data files and find the parameters.  Data files illustrate several of the function types:
-    * Income-housing for exponential.
-    * `stan-data.csv` for exponential.
-    * tides for sine wave
-    * atomic bomb for power law
-    * gaussian and its cumulative as an S-curve
-    * logistic function
+    * Exponentials
+       * Income-housing for exponential. [exercise](http://rpubs.com/dtkaplan/558)
+       * `stan-data.csv` for exponential. [Is cooling exponential?](http://rpubs.com/dtkaplan/558)
+    * Trigonometric
+       * tides for sine wave [from PREP2012](http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html)
+    * Power Law
+       * atomic bomb radius versus time
+    * S-curves
+       * gaussian and its cumulative as an S-curve
+       * logistic function
+       * [Hill function](http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html)
+    * Gaussian bump 
+        * Ben Baumer's shortstop example
+    * Quadratic
+        * Kepler's orbit
+        
+##### Possible examples
 
-
-What are
+* [World Population example](http://prep2012.mosaic-web.org/Topics/Functions/WorldPopulation.html)
 
 #### 10:15 break
 
 #### 10:30 Theme Fitting
+
+##### Calculus Operations
+
+ACTIVITY: 
+* Write a function that returns a function that is a constant, linear, or quadratic approximation to a given function at any point.
+* (Maybe for PREP 2013).  Find the curvature of a function at any point, and plot out the associated circle along the graph.  (A nice trigonometric exercise.)  
+    * Add a `plotPath()` function to mosaic: `plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))`
+
+
+#### Unknown Function Forms
+* Flow of orange joice via spline [from PREP 2012](http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html)
+* Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
+* [Maximum heart rate versus age](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf).  Get the data.  [Wikipedia article](http://en.wikipedia.org/wiki/Heart_rate)
 
 Manifest versus latent function forms:
 * Income-Housing (manifest form)
@@ -54,9 +77,11 @@ Approximation
 
 
 Power laws and where they come from:
-* Units
-* Dimensional analysis
-
+* Units & Dimensional analysis
+    * Analysis of atomic bomb
+* Allometrics
+    * Relationships in the internal combustion engine
+    * Need some data from biology
 
 
 #### 2:15 break
@@ -66,17 +91,20 @@ Power laws and where they come from:
 
 Functions in two variables
 
-* The Ideal Gas Law and the Law of Mass Action
-* The landscape functions: mountain, valley, slope, amphitheater
+* The Ideal Gas Law and the Law of Mass Action [PREP 2012](http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf)
+* [Cobb-Douglas](http://prep2012.mosaic-web.org/Topics/Cobb-Douglas/cobb-douglas.html)
+* The landscape functions: [mountain](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), valley, [hillside](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png), amphitheater
 
 The modeling polynomial: 2nd order in two variables
-* picking model terms
+* [picking model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf)
 * Fitting and interpreting
    * Used car prices
 
 Stating partial derivatives
-* Celebrity Divorce: is it a reasonable model?
-* 
+* [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf): is it a reasonable model?
+
+Optimization
+* [Health policy example](http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html)
 
 #### 4:00 Adjourn
 
