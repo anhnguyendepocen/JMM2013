@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Workshop Schedule</title>
+<title>Functions, Parameters, and Fitting for Teaching Calculus</title>
 
 <style type="text/css">
 body, td {
@@ -141,17 +141,52 @@ hr {
 </head>
 
 <body>
-<h1>Workshop Schedule</h1>
+<h1>Functions, Parameters, and Fitting for Teaching Calculus</h1>
+
+<p><strong>Date</strong>: Tuesday, January 8th, 2013; 9:00am - 4:00pm</p>
 
 <p><strong>Location</strong>: <a href="http://www.marriott.com/hotels/maps/travel/sandt-san-diego-marriott-marquis-and-marina/">Marriott Marquis San Diego</a> in the <a href="http://www.marriott.com/hotelwebsites/us/s/sandt/SANDT_PDF/SANDT%20All-FloorDiagram2012-Color.pdf">Carlsbad/Cardiff Rooms</a>: South Tower &mdash; Level 3</p>
 
+<h4><a href="http://www.causeweb.org/workshop/jmm13_mosaic/">Description</a></h4>
+
+<blockquote>
+<p>This one-day workshop is designed to help instructors move toward teaching introductory calculus in a modeling- and data-oriented way. The parameters of basic functions are often treated casually in introductory calculus, as if they were a nuisance or merely fodder for the chain rule. In the first half of the workshop, we&#39;ll show how to interpret them physically, how to relate them to data, and how to use them for model building. The second half emphasizes polynomial approximation, the relationship between Taylor series and model fitting, and model building using information about derivatives. A small, general purpose mathematical toolkit suffices to build and interpret compelling models in a very wide range of settings spanning economics, biology, physics, etc. We&#39;ll provide in-class activities, assignments, student project topics, and example exam questions. Both paper-and-pencil as well as computer-oriented approaches (using R, Sage, or Mathematica) will be featured, drawing on the materials developed through the NSF-supported Project MOSAIC, which aims to construct strong connections in teaching modeling, calculus, statistics, and computation. Participants are encouraged to bring a laptop. If you don&#39;t currently use software for teaching calculus, we&#39;ll set you up with the free R system running through a web browser.</p>
+</blockquote>
+
+<h5>Workshop Leaders:</h5>
+
+<ul>
+<li>Danny Kaplan, Macalester College</li>
+<li>Randall Pruim, Calvin College</li>
+</ul>
+
+<h5>Support:</h5>
+
+<ul>
+<li>A grant to <a href="http://www.mosaic-web.org">Project MOSAIC</a> from the US National Science Foundation, NSF DUE-0920350</li>
+<li><a href="http://www.causeweb.org/">CAUSE</a>: The Consortium for the Advancement of Undergraduate Statistics Education</li>
+<li>MAA: The Mathematical Association of America</li>
+</ul>
+
+<h4>Handouts:</h4>
+
+<ul>
+<li><a href="http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf">R/mosaic Cheat Sheet</a></li>
+</ul>
+
+<h4>Other Resources:</h4>
+
+<ul>
+<li>Ben Baumer&#39;s activity on fitting power laws using <a href="http://www.math.smith.edu/%7Ebbaumer/mth247/labs/transformations.html">Tukey&#39;s Power Rule and the Ladder of Powers</a></li>
+</ul>
+
+<h2>Schedule and Outline</h2>
+
 <h4>9am: Functions and Parameters</h4>
 
-<p><a href="Activities/Introduction/introductory-activity.html">Introductory activity</a></p>
+<p><a href="Activities/Introduction/introductory-activity.html">Introductory activity</a> (15 min)</p>
 
-<p>Technology: Accessing the web server and RStudio</p>
-
-<p>Assignment: Data and eyeballing parameters.</p>
+<h5>Interactive: Technology: Accessing the web server and RStudio (15 min)</h5>
 
 <ul>
 <li>Introduction to enough R to let them load and plot data
@@ -160,6 +195,15 @@ hr {
 <li><code>fetchData()</code></li>
 <li><code>plotPoints()</code></li>
 </ul></li>
+</ul>
+
+<h5>Compiling the list of functions and parameterizations (15 min)</h5>
+
+<p>At this point, just enter the forms, without much discussion.  </p>
+
+<h5>ACTIVITY: Data and eyeballing parameters. (20 min)</h5>
+
+<ul>
 <li>Load in the data files and find the parameters.  Data files illustrate several of the function types:
 
 <ul>
@@ -205,6 +249,14 @@ hr {
 <li><a href="http://prep2012.mosaic-web.org/Topics/Functions/WorldPopulation.html">World Population example</a></li>
 </ul>
 
+<h4>Summary</h4>
+
+<p>Create and display a document summarizing the findings.  </p>
+
+<ul>
+<li>A template document on <a href="functions-parameters.html">Calculus Functions and their Parameters</a></li>
+</ul>
+
 <h4>10:15 break</h4>
 
 <h4>10:30 Theme Fitting</h4>
@@ -225,7 +277,7 @@ hr {
 <h4>Unknown Function Forms</h4>
 
 <ul>
-<li>Flow of orange joice via spline <a href="http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html">from PREP 2012</a></li>
+<li>Flow of orange juice via spline <a href="http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html">from PREP 2012</a></li>
 <li>Traffic light capacity (integrating a hill function). <a href="http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html">from PREP 2012</a></li>
 <li><a href="https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf">Maximum heart rate versus age</a>.  Get the data.  <a href="http://en.wikipedia.org/wiki/Heart_rate">Wikipedia article</a></li>
 </ul>
@@ -247,6 +299,8 @@ hr {
 
 <h4>1:15 resume</h4>
 
+<h5>Lecture: Motivation for some functional forms (15 min)</h5>
+
 <p>Approximation</p>
 
 <ul>
@@ -255,12 +309,19 @@ hr {
 <ul>
 <li>Hooke&#39;s Law</li>
 <li>Newton&#39;s Law of cooling</li>
+<li>Bi-linear: Idea gas law, law of mass action</li>
 </ul></li>
 <li>Polynomials, Taylor series and least squares</li>
-<li>Sine waves and orthogonality.</li>
+<li>Sine waves and orthogonality: our emphasis on polynomials pre-dates the development of wave- and oscillation-based technology.</li>
 </ul>
 
-<p>Power laws and where they come from:</p>
+<h5>Activity:</h5>
+
+<p><code>mTalyor</code> applet.</p>
+
+<p>Task: Use this to create a lesson plan on the quality of an approximation.</p>
+
+<h5>Lecture: Power laws and where they come from: (15 min)</h5>
 
 <ul>
 <li>Units &amp; Dimensional analysis
@@ -272,7 +333,7 @@ hr {
 
 <ul>
 <li>Relationships in the internal combustion engine</li>
-<li>Need some data from biology</li>
+<li>Species-Area data <code>&quot;http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv&quot;</code></li>
 </ul></li>
 </ul>
 
@@ -299,10 +360,11 @@ hr {
 </ul></li>
 </ul>
 
-<p>Stating partial derivatives</p>
+<p>Starting partial derivatives</p>
 
 <ul>
 <li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf">Celebrity Divorce</a>: is it a reasonable model?</li>
+<li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/eyeball-partials.pdf">Eyeballing interactions</a></li>
 </ul>
 
 <p>Optimization</p>
