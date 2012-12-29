@@ -1,0 +1,18 @@
+#! /bin/bash
+
+HELP_MESSAGE="Compile a fragment to PDF.\nArguments:inputfile.md [template.tex]"
+
+case $# in
+    0)  echo -e $HELP_MESSAGE
+  exit 1
+	;;
+esac
+
+SRC_NAME="$1"
+# Not using template yet
+
+# Recode "handout.pdf"
+pandoc --template ../PDF-templates/simple.tex ${SRC_NAME} -o handout.pdf
+
+# fullpage2.tex
+# simple.tex

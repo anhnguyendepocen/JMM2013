@@ -12,5 +12,9 @@ To access the server:
 Accounts
 --------
 
-* jmm101 -- alpha
-*
+* jmm101 -- alpha [and the rest of the military alphabet]
+* jmm126 -- zulu
+* jmm127 -- alpha
+* jmm128 -- bravo
+* jmm129 -- charlie
+* jmm130 -- delta

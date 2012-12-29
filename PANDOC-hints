@@ -1,0 +1,10 @@
+### Images
+
+For an inserted image, put a non-breaking space after the paragraph.  That will suppress the figure environment.  Or, we might want to redefine the figure environment and caption in order to get what we want.
+
+### Title
+
+Put this information at the top of the document, e.g.
+
+% This is the title
+% Author 1; Author 2

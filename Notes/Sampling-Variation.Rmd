@@ -1,0 +1,81 @@
+Estimating Sampling Variation
+==========================
+
+```{r include=FALSE}
+require(mosaic)
+require(xtable)
+opts_chunk$set(tidy=FALSE, fig.width=3, fig.height=3)
+options(xtable.type="html")
+```
+
+### Danny Kaplan, `r I(date())`
+
+Sampling variation refers to the uncertainty created by the sampling process.  If your data is just a sample, another data set will produce a somewhat different result.  The question we seek to answer is, "How much is *somewhat*?"
+
+The method used here is called **bootstrapping**.  Bootstrapping relies on a simulation of the sampling process called **resampling**: sampling from the sample.
+
+#### Start with your data and a model
+
+To illustrate, consider estimating the power-law exponent on the relationship between species number and land area.
+
+```{r  fig.width=3,fig.height=3,message=FALSE}
+species = fetchData("http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv")
+plotPoints(Species ~ Area, data=species)
+```
+
+The model we seek to fit is Species = a Area^b.  Judging from the shape of the graph, Species goes roughly as the square-root of area, so use $b=0.5$ as the initial guess for the nonlinear parameter.  Finding the parameters is a straightforward application of `fitModel`:
+
+```{r}
+fitModel( Species ~ a*Area^b, 
+          data=species, 
+          start=list(b=.5) )
+```
+
+It looks like a fourth-root model is appropriate.  But how precise is the estimate of the coefficient $b$?
+
+#### Package up the parameter estimation
+
+Write up the estimation calculation in a form that returns the values of interest.  Since $b$ is the parameter of interest here, we already have that form.  
+
+But to illustrate the process, suppose that we were interested in predicting the number of species in a land with area $2 \times 10^6$ km^2.  This would be an extrapolation, and extrapolations are generally unreliable, but here goes ...
+
+```{r}
+{ mod = fitModel( Species ~ a*Area^b, 
+                  data=species, 
+                  start=list(b=.5) )
+  mod( 2e6 ) 
+}
+```
+
+Note that the pair of commands has been put between curly braces.  That's the R syntax for grouping multiple statements into a single expression.
+
+#### Apply resampling and iterate
+
+Take your statement, appropriately packaged.  Wrap the data frame with `resample`.  Put `do(100)*` in front of the statement and assign the results so that you can access them later:
+
+```{r}
+s = do(100)*
+  { mod = fitModel( Species ~ a*Area^b, 
+                  data=resample(species), 
+                  start=list(b=.5) )
+              coef(mod) 
+  }
+```
+Now you have a set of 100 resampling realizations.  This can be handled in stand ways.  For instance, to find the 95% confidence interval, use `confint`.
+
+```{r}
+confint(s)
+```
+
+Returning to the coefficient $b$ ...
+```{r}
+s2 = do(100)*
+   {mod = fitModel( Species ~ a*Area^b, 
+                  data=resample(species), 
+                  start=list(b=.5) )
+    coef(mod)}
+```
+And the confidence intervals:
+```{r}
+confint(s2)
+```

@@ -1,3 +1,6 @@
+% Introduction to the Workshop
+% Daniel T Kaplan
+
 Introduction to the Workshop
 ========================================================
 
@@ -18,9 +21,10 @@ We'll have you introduce yourselves in a few moments.
 
 A starting problem: Stewart's cubic population for interpolation (from Stewart Calculus: Concepts and Contexts 2/e p. 38. It appears in Chapter 1)
 
-![cubic population](Stewart-population-cubic.png)
+![cubic population](./Stewart-population-cubic.png)\ 
 
 Questions about this.
+
 * Is the cubic an appropriate form?
 * What's appropriate depends on the purpose: that's what modeling is about
 * What should be in the student's toolkit?
@@ -30,20 +34,17 @@ Questions about this.
     * Students need to have a notions of **stiffness** and a set of possible functions to choose from.
 
 #### Sponsors
-
 * Project MOSAIC
 * CAUSE
 * MAA
 * NSF DUE
 
 #### Review the schedule
-
 * Two sessions in the morning with a 15-minute break in between
 * An hour for lunch, provided by Project MOSAIC
 * Two sessions in the afternoon with a 15-minute break
 
 #### Broad Outline
-
 * Session One: Choosing functions and parameterizations
 * Session Two: Fitting and Calculus operations on functions
 * Lunch

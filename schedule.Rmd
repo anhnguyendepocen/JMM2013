@@ -1,5 +1,6 @@
-Functions, Parameters, and Fitting for Teaching Calculus
-========================================================
+% Functions, Parameters, and Fitting for Teaching Calculus
+% Daniel Kaplan; Randall Pruim
+%
 
 **Date**: Tuesday, January 8th, 2013; 9:00am - 4:00pm
 
@@ -68,9 +69,6 @@ At this point, just enter the forms, without much discussion.
     * Quadratic
         * Kepler's orbit
         
-##### Possible examples
-
-* [World Population example](http://prep2012.mosaic-web.org/Topics/Functions/WorldPopulation.html)
 
 #### Summary
 Create and display a document summarizing the findings.  
@@ -83,7 +81,8 @@ Create and display a document summarizing the findings.
 
 ##### Calculus Operations
 
-ACTIVITY: 
+ACTIVITY
+
 * Write a function that returns a function that is a constant, linear, or quadratic approximation to a given function at any point.
 * (Maybe for PREP 2013).  Find the curvature of a function at any point, and plot out the associated circle along the graph.  (A nice trigonometric exercise.)  
     * Add a `plotPath()` function to mosaic: `plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))`
@@ -95,13 +94,18 @@ ACTIVITY:
 * [Maximum heart rate versus age](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf).  Get the data.  [Wikipedia article](http://en.wikipedia.org/wiki/Heart_rate)
 
 Manifest versus latent function forms:
+
 * Income-Housing (manifest form)
 * Space-Shuttle
 
-* How to use `fitModel`
-* The criteria for `fitModel`
 
-A bit about statistical processes: the standard error of parameters.
+##### Some Statistics
+
+* The criteria for `fitModel`
+* Sampling and resampling distributions
+* The standard error
+
+Document: [How to get a quick estimate of sampling variation](Notes/Sampling-Variation.html)
 
 #### Noon 
 
@@ -112,6 +116,7 @@ Lunch at the Marina Kitchen in the Marriott.  Free to participants.
 ##### Lecture: Motivation for some functional forms (15 min)
 
 Approximation
+
 * Linearization
     * Hooke's Law
     * Newton's Law of cooling
@@ -121,13 +126,15 @@ Approximation
 
 
 ##### Activity: 
-`mTalyor` applet.
+
+* `mTalyor` applet.
 
 Task: Use this to create a lesson plan on the quality of an approximation.
 
 
 
 ##### Lecture: Power laws and where they come from: (15 min)
+
 * Units & Dimensional analysis
     * Analysis of atomic bomb
 * Allometrics
@@ -147,15 +154,18 @@ Functions in two variables
 * The landscape functions: [mountain](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), valley, [hillside](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png), amphitheater
 
 The modeling polynomial: 2nd order in two variables
+
 * [picking model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf)
 * Fitting and interpreting
    * Used car prices
 
 Starting partial derivatives
+
 * [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf): is it a reasonable model?
 * [Eyeballing interactions](http://dl.dropbox.com/u/5098197/Math135/In-Class/eyeball-partials.pdf)
 
 Optimization
+
 * [Health policy example](http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html)
 
 #### 4:00 Adjourn
@@ -165,8 +175,11 @@ Optimization
 ### Lunch Menu
 
 Choice of:
+
 * Grilled Flat Iron Steak Salad with Butter Lettuce, Arugula, Roasted Tomato, Beef Bacon and Balsamic Blue Cheese Dressing 
+
 * Chicken Mozzarella Sandwich served Warm with Arugula Sun Dried Tomato Tapenade - $15.00 per person 
+
 * Grilled Portobello Mushroom Sandwich with Zucchini and Goat Cheese - $15.00 per person
  
 Desert:
