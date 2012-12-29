@@ -50,7 +50,7 @@ At this point, just enter the forms, without much discussion.
 
 ##### ACTIVITY: Data and eyeballing parameters. (20 min)
 
-* Hand out a document with these graphed out.  **TO DO**
+* Hand out a document with these graphed out. [Eyeballing Parameters](Notes/Eyeballing-Parameters.html)
 
 * Load in the data files and find the parameters.  Data files illustrate several of the function types:
     * Exponentials
@@ -67,7 +67,7 @@ At this point, just enter the forms, without much discussion.
     * Gaussian bump 
         * Ben Baumer's shortstop example
     * Quadratic
-        * Kepler's orbit
+        * [Kepler's orbit](Notes/Kepler-Mars.html)
         
 
 #### Summary
@@ -141,6 +141,7 @@ Task: Use this to create a lesson plan on the quality of an approximation.
     * Relationships in the internal combustion engine
     * Species-Area data `"http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv"`
 
+Resource: The engine RPM versus BHP example.
 
 #### 2:15 break
 

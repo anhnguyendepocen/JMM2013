@@ -1,0 +1,98 @@
+Eyeballing Parameters
+=============
+
+   * Exponentials
+       * Income-housing for exponential. [exercise](http://rpubs.com/dtkaplan/558)
+       * `stan-data.csv` for exponential. [Is cooling exponential?](http://rpubs.com/dtkaplan/558)
+    * Trigonometric
+       * tides for sine wave [from PREP2012](http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html)
+    * Power Law
+       * atomic bomb radius versus time
+    * S-curves
+       * gaussian and its cumulative as an S-curve
+       * logistic function
+       * [Hill function](http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html)
+    * Gaussian bump 
+        * Ben Baumer's shortstop example
+    * Quadratic
+        * [Kepler's orbit](Notes/Kepler-Mars.html)
+        
+
+```{r include=FALSE}
+require(mosaic)
+opts_chunk$set(tidy=FALSE, fig.width=3, fig.height=3)
+```
+
+
+```{r message=FALSE,fig.keep="all"}
+inc = fetchData("Income-Housing.csv")
+plotPoints( Telephone ~ IncomePercentile, data=inc)
+```
+
+```{r message=FALSE}
+stan = fetchData("stan-data.csv")
+plotPoints( temp ~ time, data=stan)
+```
+
+```{r message=FALSE}
+kdata = fetchData("kepler-mars.csv")
+plotPoints( kepler.radius ~ kepler.angle, 
+    data=kdata, 
+    xlab="Angle",ylab="Radius" )
+kdata = transform(kdata, x=kepler.radius*cos(kepler.angle))
+kdata = transform(kdata, y=kepler.radius*sin(kepler.angle))
+plotPoints(y~x, data=kdata,col="red")
+```
+
+```{r message=FALSE}
+h = fetchData("hawaii.csv")
+plotPoints(water ~ time, data=h)
+```
+
+```{r message=FALSE}
+engines = fetchData("engines.csv")
+plotPoints(log(RPM)~log(BHP), data=engines)
+```
+
+```{r message=FALSE}
+LE = fetchData("LifeExpectancy.csv")
+plotPoints(LifeExpectancy ~ Age, data=LE)
+```
+
+```{r message=FALSE}
+CO2 = fetchData("maunaloa-CO2.csv")
+plotPoints( Average ~ Year, data=CO2)
+```
+
+```{r message=FALSE}
+oring = fetchData("oring-damage.csv")
+plotPoints(damage ~ temp, data=oring, 
+           pch=20, col=rgb(0,0,0,.3))
+```
+
+
+```{r message=FALSE}
+worldPop = fetchData("PREP-Stewart-World-Population.csv")
+plotPoints(Population ~ Year, data=worldPop )
+```
+
+```{r message=FALSE}
+utils = fetchData("utilities.csv")
+plotPoints(ccf ~ temp, data=utils)
+```
+
+```{r message=FALSE}
+blast = fetchData("blastdata.csv")
+plotPoints(radius ~ time, data=blast)
+```
+
+```{r message=FALSE}
+body = fetchData("BodyFat.csv")
+body = subset(body, Height>60 & Weight<300 )
+plotPoints(Weight ~ Height, data=body)
+```
+
+```{r message=FALSE}
+cars = fetchData("used-hondas.csv")
+plotPoints(Price ~ Age, data=cars)
+```

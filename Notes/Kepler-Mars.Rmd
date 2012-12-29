@@ -1,0 +1,110 @@
+Kepler's Measurements of Mars
+=================
+
+```{r include=FALSE}
+require(mosaic)
+```
+
+[Johannes Kepler](http://en.wikipedia.org/wiki/Johannes_Kepler) (1571-1630) revolutionized the understanding of the motions of the planets.  His work played an important part in Isaac Newton's formulation of the theory of universal gravitation.
+
+![A 1610 portrait of Johannes Kepler](http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Johannes_Kepler_1610.jpg/220px-Johannes_Kepler_1610.jpg)
+
+Kepler introduced the theory that planets move around the Sun in elliptically shaped orbits.  The Sun is at one of the foci of the ellipse.  One way to describe an ellipse is as a radius from the focus as a function of angle $\theta$.  The formula is: 
+
+$$\mbox{radius} = \frac{A}{1 + B \cos \theta}$$
+
+The parameters $A$ and $B$ describe the shape of the ellipse.  $A$ is a typical radius (the ``semi-latus rectum'', if you must know) and $B$ is the {\em eccentricity}.  When the eccentricity is zero, the ellipse is a circle.
+
+The data in `kepler-mars.csv` contain the measurements Kepler used
+in studying the position of Mars, translated to modern units.  Also in the file are the actual position (computed from modern theory).  The time is measured in Julian days from Greenwich noon.   The radii are measured in Astronomical Units (AU).  One AU is the mean distance between the Earth and the Sun.
+
+```{r message=FALSE}
+kdata = fetchData("kepler-mars.csv")
+```
+
+### Task 1
+
+Plot out Kepler's measured radius versus his measured angle.  Use the resulting graph to estimate the values of $A$ and $B$.  
+
+
+#### Answer
+
+```{r angleplot,fig.width=3,fig.height=3}
+plotPoints( kepler.radius ~ kepler.angle, 
+    data=kdata, 
+    xlab="Angle",ylab="Radius" )
+``` 
+  
+Reasonable values are $A=1.51$ AU and $B=0.0926$. You can estimate this by eye, or fit the function to the actual data:
+```{r}
+rmod = fitModel( kepler.radius ~ A/(1+B*cos(kepler.angle)), 
+                 start=list(B=.1), data=kdata)
+coef(rmod)
+```
+
+### Task 2
+
+Plot out the orbit itself from Kepler's data.  If the Sun is placed at $(x=0, y=0)$, then the position of Mars will be $(x = r \cos \theta, y = r \sin \theta )$.  Compute this $x$ and $y$ for each of the dates in Kepler's data set and plot out the $(x,y)$ pairs.  
+  
+Then, using the values of $A$ and $B$ you estimated from the data,
+plot out the orbit.
+  
+#### Answers
+
+```{r plotorbit}
+kdata = transform(kdata, x=kepler.radius*cos(kepler.angle))
+kdata = transform(kdata, y=kepler.radius*sin(kepler.angle))
+plotPoints(y~x, data=kdata,col="red")
+plotPoints(0~0,pch=20,col="yellow",cex=5,add=TRUE)
+```
+
+Now add in the orbit:
+```{r echo=-(1:2)}
+<<plotorbit>>
+angs = seq(0,2*pi,length=1000)
+A = 1.51
+B = 0.0926
+r = A/(1 + B*cos(angs))
+plotPoints( r*sin(angs)~r*cos(angs), add=TRUE, type="l")
+# This is where it would be nice to have a plotPath() function, e.g.
+# plotPoints( c(r*cos(angs),r*sin(angs))~angs, angs.lim=c(0,2*pi))
+```
+
+### Task 3
+
+One of Kepler's key theoretical insights is that orbiting planets
+sweep out equal areas in equal times.  Newton used this fact --- based
+on the observations that Kepler studied --- to support his
+inverse-square law of gravitation.
+
+DERIVE THE expression for area swept out over time: 
+* The distance travelled is $r d\theta$
+* The area of the pie-shaped space swept out, approximating it as a triangle, is $\frac{1}{2} r^2 d\theta$.
+
+
+The rate of "sweeping out" of area is $\frac{1}{2} r^2 \frac{d\theta}{dt}$. To calculate this, you'll need a function $\theta(t)$ that you can differentiation to produce the function $\frac{d\theta}{dt}$.
+
+1. Use Kepler's data to construct a continuous estimate of angle versus time.
+2. Similarly, construct an estimate of radius versus time.
+3. Use differentiation to find $\frac{d\theta}{dt}$
+4. Plot out $\frac{1}{2} r^2 \frac{d\theta}{dt}$ against time.
+
+Is the "sweeping out" rate approximately constant? You may find it useful to look at the times at which data were collected.
+
+```{r}
+radius = connector(actual.radius ~ time, data=kdata)
+angle = connector(actual.angle ~ time, data=kdata)
+dangle = D(angle(time)~time)
+plotFun( .5*(radius(time)^2)*dangle(time)~time, 
+         time.lim=c(-800,4000),
+         ylim=c(-.01,.03))
+plotPoints( .0 ~ time, data=kdata, add=TRUE)
+```
+
+### More
+
+Find the eccentricity of the Earth's orbit and plot it on the same graph.
+
+What's the smallest possible distance between the Earth and Mars?  The largest?
+
+
