@@ -33,7 +33,7 @@ plotPoints(Telephone~IncomePercentile,data=inc)
 
 
 \paragraph{Cooling Water}
-Stan Wagon's measurements of the temperature of a water.  The water was boiled and poured into the mug.  (Source: Stan Wagon and Robert Portmann, ``How quickly does hot water cool?", {\em Mathematica in Education and Research} {\bf 10}:3 (July 2005) 1-9.) 
+Stan Wagon's measurements of the temperature of cooling water.  The water was boiled and poured into an aluminum pot. Time in seconds, temperature in degrees C. (For similar data: Stan Wagon and Robert Portmann, ``How quickly does hot water cool?", {\em Mathematica in Education and Research} {\bf 10}:3 (July 2005) 1-9.) 
 <<water,message=FALSE>>=
 stan = fetchData("stan-data.csv")
 plotPoints( temp ~ time, data=stan)

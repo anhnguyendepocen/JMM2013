@@ -19,13 +19,14 @@
 * [CAUSE](http://www.causeweb.org/): The Consortium for the Advancement of Undergraduate Statistics Education
 * MAA: The Mathematical Association of America
 
-#### Handouts:
+#### Handouts at the Workshop:
 
 * [R/mosaic Cheat Sheet](http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf)
 * [Eyeballing Parameters](Notes/Eyeballing-Parameters.pdf)
 
 #### Other Resources:
 
+* Dan Flath's site for ["Applied Calculus"](http://danflath.com/math-135-applied-math/), Math 135 at Macalester, including a day-by-day syllabus.
 * Ben Baumer's activity on fitting power laws using [Tukey's Power Rule and the Ladder of Powers](http://www.math.smith.edu/~bbaumer/mth247/labs/transformations.html)
 
 ## Schedule and Outline
@@ -49,27 +50,12 @@ At this point, just enter the forms, without much discussion.
 
 
 
-##### ACTIVITY: Data and eyeballing parameters. (20 min)
+##### ACTIVITY: [Eyeballing Parameters](Notes/Eyeballing-Parameters.html) (20 min)
 
-* Hand out a document with these graphed out. [Eyeballing Parameters](Notes/Eyeballing-Parameters.html)
+
 
 * Load in the data files and find the parameters.  Data files illustrate several of the function types:
-    * Exponentials
-       * Income-housing for exponential. [exercise](http://rpubs.com/dtkaplan/558)
-       * `stan-data.csv` for exponential. [Is cooling exponential?](http://rpubs.com/dtkaplan/558)
-    * Trigonometric
-       * tides for sine wave [from PREP2012](http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html)
-    * Power Law
-       * atomic bomb radius versus time
-    * S-curves
-       * gaussian and its cumulative as an S-curve
-       * logistic function
-       * [Hill function](http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html)
-    * Gaussian bump 
-        * Ben Baumer's shortstop example
-    * Quadratic
-        * [Kepler's orbit](Notes/Kepler-Mars.html)
-        
+    
 
 #### Summary
 Create and display a document summarizing the findings.  
@@ -80,29 +66,34 @@ Create and display a document summarizing the findings.
 
 #### 10:30 Theme Fitting
 
-##### Calculus Operations
+##### Catch up on function and parameter document (5min)
 
-ACTIVITY
+##### Calculus Operations (40 min)
 
-* Write a function that returns a function that is a constant, linear, or quadratic approximation to a given function at any point.
-* (Maybe for PREP 2013).  Find the curvature of a function at any point, and plot out the associated circle along the graph.  (A nice trigonometric exercise.)  
-    * Add a `plotPath()` function to mosaic: `plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))`
+###### Differentiation 
 
+1. Find the flow [from PREP 2012](http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html)
+2. [Linear and Quadratic approximations via derivatives](Notes/Derivs-and-Approximations.html). **TO DO: put `slideX0` in `fetchData()` repository
+3. Curvature
+4. [Kepler and Mars](Notes/Kepler-Mars.html) (Task 3)
 
-#### Unknown Function Forms
-* Flow of orange juice via spline [from PREP 2012](http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html)
-* Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
-* [Maximum heart rate versus age](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf).  Get the data.  [Wikipedia article](http://en.wikipedia.org/wiki/Heart_rate)
+###### Integration 
+
+1. Given the flow, find the volume.  (From StartR)
+2. RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of [linear and quadratic appoximations](Notes/Derivs-and-Approximations.html))
+3. Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
+
+##### Some Statistics (40 mins)
+
+###### Lecture --- Fitting and Confidence intervals (15 mins) 
 
 Manifest versus latent function forms:
-
 * Income-Housing (manifest form)
 * Space-Shuttle
 
-
-##### Some Statistics
-
 * The criteria for `fitModel`
+* **TO DO** Write a function that fits a function form to a given $f(x)$ using least squares.  Have it sample $f(x)$ on a given range.
+
 * Sampling and resampling distributions
 * The standard error
 
@@ -120,7 +111,7 @@ Approximation
 
 * Linearization
     * Hooke's Law
-    * Newton's Law of cooling
+    * Newton's Law of cooling ([Stan's paper](Resources/Stan-Cooling.pdf) showing different functional forms.)
     * Bi-linear: Idea gas law, law of mass action
 * Polynomials, Taylor series and least squares
 * Sine waves and orthogonality: our emphasis on polynomials pre-dates the development of wave- and oscillation-based technology.
@@ -188,3 +179,12 @@ Desert:
 Mini Slice of Daily New York Style Cheesecake - $4.00 per person
  
 Coffee, tea, iced tea and soft drinks included with meal.
+
+-------------
+
+### Orphaned Ideas
+
+* [Hill function](http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html)   
+* [Maximum heart rate versus age](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf).  Get the data.  [Wikipedia article](http://en.wikipedia.org/wiki/Heart_rate)
+* Add a `plotPath()` function to mosaic: `plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))`
+
