@@ -22,6 +22,7 @@
 #### Handouts:
 
 * [R/mosaic Cheat Sheet](http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf)
+* [Eyeballing Parameters](Notes/Eyeballing-Parameters.pdf)
 
 #### Other Resources:
 

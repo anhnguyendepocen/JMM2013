@@ -1,22 +1,7 @@
 Eyeballing Parameters
 =============
 
-   * Exponentials
-       * Income-housing for exponential. [exercise](http://rpubs.com/dtkaplan/558)
-       * `stan-data.csv` for exponential. [Is cooling exponential?](http://rpubs.com/dtkaplan/558)
-    * Trigonometric
-       * tides for sine wave [from PREP2012](http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html)
-    * Power Law
-       * atomic bomb radius versus time
-    * S-curves
-       * gaussian and its cumulative as an S-curve
-       * logistic function
-       * [Hill function](http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html)
-    * Gaussian bump 
-        * Ben Baumer's shortstop example
-    * Quadratic
-        * [Kepler's orbit](Notes/Kepler-Mars.html)
-        
+For each graph, choose an appropriate function form to represent the pattern shown by the data and estimate, by eye, the parameters that will fit the data.
 
 ```{r include=FALSE}
 require(mosaic)
@@ -24,15 +9,21 @@ opts_chunk$set(tidy=FALSE, fig.width=3, fig.height=3)
 ```
 
 
+The fraction of US households with a telephone, as a function of family income.  (Source: Susan E. Mayer (1997) **What money can't buy: Family income and children's life chances** Harvard Univ. Press p. 102.)
 ```{r message=FALSE,fig.keep="all"}
 inc = fetchData("Income-Housing.csv")
 plotPoints( Telephone ~ IncomePercentile, data=inc)
 ```
 
+Stan Wagon's measurements of the temperature of a water.  The water was boiled and poured into the mug.  (Source: Stan Wagon and Robert Portmann, "How quickly does hot water cool?", *Mathematica in Education and Research* **10**:3 (July 2005) 1-9.)
 ```{r message=FALSE}
 stan = fetchData("stan-data.csv")
 plotPoints( temp ~ time, data=stan)
 ```
+
+Kepler's measurements of the position of Mars relative to the sun.
+(Data source: McLaughlin, Michael P. ( 1999 ) ``A Tutorial on
+  Mathematical Modelling'' <http://www.causascientia.org/math_stat/Tutorial.pdf> p. 21-23.)  The `Time` variable is measured as a Julian date; 0 is Greenwich noon, on 1 January 4713 BC.  Radii are in astronomical units (AU) --- the mean distance from the Earth to the Sun. 
 
 ```{r message=FALSE}
 kdata = fetchData("kepler-mars.csv")
@@ -44,25 +35,34 @@ kdata = transform(kdata, y=kepler.radius*sin(kepler.angle))
 plotPoints(y~x, data=kdata,col="red")
 ```
 
+Tidal measurements in Pearl Harbor, Hawaii.  (Source: Andrew Beveridge)
+
 ```{r message=FALSE}
 h = fetchData("hawaii.csv")
 plotPoints(water ~ time, data=h)
 ```
 
+Data about the size, power, and other characteristics of internal combustion engines.  (Source: Thomas McMahon and John Tyler Bonner (1983) *On Size and Life*)
 ```{r message=FALSE}
 engines = fetchData("engines.csv")
 plotPoints(log(RPM)~log(BHP), data=engines)
 ```
 
+
+Residual life expectancy versus age in the US.  US Census Bureau.  
 ```{r message=FALSE}
 LE = fetchData("LifeExpectancy.csv")
 plotPoints(LifeExpectancy ~ Age, data=LE)
 ```
 
+Keeling's record of atmospheric carbon dioxide from Mauna Loa, 1958-2008. <http://cdiac.ornl.gov/trends/co2/sio-mlo.html>
+
 ```{r message=FALSE}
 CO2 = fetchData("maunaloa-CO2.csv")
 plotPoints( Average ~ Year, data=CO2)
 ```
+
+The number of O-ring failures in each Space Shuttle launch up to the 1986 Challenger accident.
 
 ```{r message=FALSE}
 oring = fetchData("oring-damage.csv")
@@ -70,28 +70,36 @@ plotPoints(damage ~ temp, data=oring,
            pch=20, col=rgb(0,0,0,.3))
 ```
 
+Data from a problem in Stewart, giving world population versus year.(Source: Stewart, **Calculus: Concepts and Contexts** 2/e p. 38.
 
 ```{r message=FALSE}
 worldPop = fetchData("PREP-Stewart-World-Population.csv")
 plotPoints(Population ~ Year, data=worldPop )
 ```
 
+
+Month-by-month utility bill data from a single-family house in Saint Paul, Minnesota.
 ```{r message=FALSE}
 utils = fetchData("utilities.csv")
 plotPoints(ccf ~ temp, data=utils)
 ```
 
+The radius of the fireball versus time measured at the first atomic bomb test, [Trinity](http://en.wikipedia.org/wiki/Trinity_(nuclear_test\)) in Alamogordo, New Mexico, on July 16, 1945.  
 ```{r message=FALSE}
 blast = fetchData("blastdata.csv")
 plotPoints(radius ~ time, data=blast)
 ```
 
+Body circumference measurements for
+252 men, along with estimates of the percentage of body fat
+determined by underwater weighing. (Source: [StatLib](http://lib.stat.cmu.edu/datasets/bodyfat).  See also a discussion by [Victor Addona](http://www.mosaic-web.org/go/MCAST/materials/Sept-10-2010/Addona_MCAST_Sept_10.pdf).) 
 ```{r message=FALSE}
 body = fetchData("BodyFat.csv")
 body = subset(body, Height>60 & Weight<300 )
 plotPoints(Weight ~ Height, data=body)
 ```
 
+Data on used Honda Accords collected by a student group in Macalester's Math 155 class.  (Contact: Daniel Kaplan, Macalester College)
 ```{r message=FALSE}
 cars = fetchData("used-hondas.csv")
 plotPoints(Price ~ Age, data=cars)
