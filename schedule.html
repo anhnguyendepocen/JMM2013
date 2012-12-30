@@ -136,6 +136,10 @@ hr {
 
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </head>
@@ -170,7 +174,7 @@ hr {
 <li>MAA: The Mathematical Association of America</li>
 </ul>
 
-<h4>Handouts:</h4>
+<h4>Handouts at the Workshop:</h4>
 
 <ul>
 <li><a href="http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf">R/mosaic Cheat Sheet</a></li>
@@ -180,6 +184,7 @@ hr {
 <h4>Other Resources:</h4>
 
 <ul>
+<li>Dan Flath&#39;s site for <a href="http://danflath.com/math-135-applied-math/">&ldquo;Applied Calculus&rdquo;</a>, Math 135 at Macalester, including a day-by-day syllabus.</li>
 <li>Ben Baumer&#39;s activity on fitting power laws using <a href="http://www.math.smith.edu/%7Ebbaumer/mth247/labs/transformations.html">Tukey&#39;s Power Rule and the Ladder of Powers</a></li>
 </ul>
 
@@ -206,47 +211,10 @@ hr {
 
 <p>At this point, just enter the forms, without much discussion.  </p>
 
-<h5>ACTIVITY: Data and eyeballing parameters. (20 min)</h5>
+<h5>ACTIVITY: <a href="Notes/Eyeballing-Parameters.html">Eyeballing Parameters</a> (20 min)</h5>
 
 <ul>
-<li><p>Hand out a document with these graphed out. <a href="Notes/Eyeballing-Parameters.html">Eyeballing Parameters</a></p></li>
-<li><p>Load in the data files and find the parameters.  Data files illustrate several of the function types:</p>
-
-<ul>
-<li>Exponentials
-
-<ul>
-<li>Income-housing for exponential. <a href="http://rpubs.com/dtkaplan/558">exercise</a></li>
-<li><code>stan-data.csv</code> for exponential. <a href="http://rpubs.com/dtkaplan/558">Is cooling exponential?</a></li>
-</ul></li>
-<li>Trigonometric
-
-<ul>
-<li>tides for sine wave <a href="http://prep2012.mosaic-web.org/Topics/Tides/tides-hawaii.html">from PREP2012</a></li>
-</ul></li>
-<li>Power Law
-
-<ul>
-<li>atomic bomb radius versus time</li>
-</ul></li>
-<li>S-curves
-
-<ul>
-<li>gaussian and its cumulative as an S-curve</li>
-<li>logistic function</li>
-<li><a href="http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html">Hill function</a></li>
-</ul></li>
-<li>Gaussian bump 
-
-<ul>
-<li>Ben Baumer&#39;s shortstop example</li>
-</ul></li>
-<li>Quadratic
-
-<ul>
-<li><a href="Notes/Kepler-Mars.html">Kepler&#39;s orbit</a></li>
-</ul></li>
-</ul></li>
+<li>Load in the data files and find the parameters.  Data files illustrate several of the function types:</li>
 </ul>
 
 <h4>Summary</h4>
@@ -261,40 +229,40 @@ hr {
 
 <h4>10:30 Theme Fitting</h4>
 
-<h5>Calculus Operations</h5>
+<h5>Catch up on function and parameter document (5min)</h5>
 
-<p>ACTIVITY</p>
+<h5>Calculus Operations (40 min)</h5>
 
-<ul>
-<li>Write a function that returns a function that is a constant, linear, or quadratic approximation to a given function at any point.</li>
-<li>(Maybe for PREP 2013).  Find the curvature of a function at any point, and plot out the associated circle along the graph.  (A nice trigonometric exercise.)<br/>
+<h6>Differentiation</h6>
 
-<ul>
-<li>Add a <code>plotPath()</code> function to mosaic: <code>plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))</code></li>
-</ul></li>
-</ul>
+<ol>
+<li>Find the flow <a href="http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html">from PREP 2012</a></li>
+<li><a href="Notes/Derivs-and-Approximations.html">Linear and Quadratic approximations via derivatives</a>. **TO DO: put <code>slideX0</code> in <code>fetchData()</code> repository</li>
+<li>Curvature</li>
+<li><a href="Notes/Kepler-Mars.html">Kepler and Mars</a> (Task 3)</li>
+</ol>
 
-<h4>Unknown Function Forms</h4>
+<h6>Integration</h6>
 
-<ul>
-<li>Flow of orange juice via spline <a href="http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html">from PREP 2012</a></li>
+<ol>
+<li>Given the flow, find the volume.  (From StartR)</li>
+<li>RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of <a href="Notes/Derivs-and-Approximations.html">linear and quadratic appoximations</a>)</li>
 <li>Traffic light capacity (integrating a hill function). <a href="http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html">from PREP 2012</a></li>
-<li><a href="https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf">Maximum heart rate versus age</a>.  Get the data.  <a href="http://en.wikipedia.org/wiki/Heart_rate">Wikipedia article</a></li>
-</ul>
+</ol>
+
+<h5>Some Statistics (40 mins)</h5>
+
+<h6>Lecture &mdash; Fitting and Confidence intervals (15 mins)</h6>
 
 <p>Manifest versus latent function forms:</p>
 
 <ul>
 <li>Income-Housing (manifest form)</li>
-<li>Space-Shuttle</li>
-</ul>
-
-<h5>Some Statistics</h5>
-
-<ul>
-<li>The criteria for <code>fitModel</code></li>
-<li>Sampling and resampling distributions</li>
-<li>The standard error</li>
+<li><p>Space-Shuttle</p></li>
+<li><p>The criteria for <code>fitModel</code></p></li>
+<li><p><strong>TO DO</strong> Write a function that fits a function form to a given \( f(x) \) using least squares.  Have it sample \( f(x) \) on a given range.</p></li>
+<li><p>Sampling and resampling distributions</p></li>
+<li><p>The standard error</p></li>
 </ul>
 
 <p>Document: <a href="Notes/Sampling-Variation.html">How to get a quick estimate of sampling variation</a></p>
@@ -314,7 +282,7 @@ hr {
 
 <ul>
 <li>Hooke&#39;s Law</li>
-<li>Newton&#39;s Law of cooling</li>
+<li>Newton&#39;s Law of cooling (<a href="Resources/Stan-Cooling.pdf">Stan&#39;s paper</a> showing different functional forms.)</li>
 <li>Bi-linear: Idea gas law, law of mass action</li>
 </ul></li>
 <li>Polynomials, Taylor series and least squares</li>
@@ -401,6 +369,16 @@ hr {
 Mini Slice of Daily New York Style Cheesecake - $4.00 per person</p>
 
 <p>Coffee, tea, iced tea and soft drinks included with meal.</p>
+
+<hr/>
+
+<h3>Orphaned Ideas</h3>
+
+<ul>
+<li><a href="http://prep2012.mosaic-web.org/Topics/Functions/hillFunctions.html">Hill function</a><br/></li>
+<li><a href="https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf">Maximum heart rate versus age</a>.  Get the data.  <a href="http://en.wikipedia.org/wiki/Heart_rate">Wikipedia article</a></li>
+<li>Add a <code>plotPath()</code> function to mosaic: <code>plotPath( c(x=cos(t),y=sin(t))~t, t.lim=c(0,2*pi))</code></li>
+</ul>
 
 </body>
 

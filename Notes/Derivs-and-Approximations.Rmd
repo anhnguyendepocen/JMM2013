@@ -1,0 +1,65 @@
+Derivatives as Slope Functions
+================
+
+```{r include=FALSE}
+require(mosaic)
+opts_chunk$set(tidy=FALSE,fig.width=3,fig.height=3,comment=NA)
+```
+
+We often portray the derivative of $f(x)$ as a function that gives the slope of $f(x)$ at each point.
+
+You can calculate the 
+
+```{r}
+f = makeFun( sin(2*pi*x/5) ~ x)
+```
+
+Now the derivative is just:
+```{r}
+df = D(f(x)~x)
+```
+
+The constant-slope approximation to $f(x)$ at point $x_0$ is $$s(x) = f(x_0) + df(x_0) \cdot (x-x_0), $$ or in R/mosaic:
+```{r}
+s = makeFun( f(x0) + df(x0)*(x-x0) ~ x, x0=0 )
+```
+
+Plot out the function and it's constant slope approximation in order to verify that we have this right:
+```{r}
+plotFun( f(x)~x, x.lim=c(-5,10))
+plotFun( s(x,x0=2)~x, add=TRUE, col="red")
+plotFun( s(x,x0=6)~x, add=TRUE, col="green")
+```
+
+### A Template for an Interactive App
+
+Plot out a function and it's approximation with a slider controlling the x0 parameter.
+
+```{r eval=FALSE}
+slideX0 = function(F,approx,xlim=c(0,1),...){
+  doPlot = function(x0,xlim=c(-5,15),...) {
+    pts = seq(xlim[1],xlim[2],length=1000)
+    plot(pts,F(pts), type="l",xlab="x",ylab="f(x)",...)
+    lines(pts,lapply(pts, approx, x0=x0),col="red")
+    points(x0, F(x0))
+  }
+  manipulate( doPlot(x0=x0,xlim=xlim,...), 
+    x0=slider(min=xlim[1],max=xlim[2],step=diff(xlim)/200,
+              label="x0", initial=mean(xlim))
+  )
+}
+```
+
+You'd call `slideX0` like this:
+```{r eval=FALSE}
+slideX0( f, approx=s, xlim=c(0,15),ylim=c(-2,2))
+```
+
+### Possible Lesson Plan
+
+1. Have the students construct a function by smoothing through some data.
+2. Construct the **constant** approximation at a point.
+3. Construct the **linear** approximation at a point
+4. Construct the **quadratic** approximation at a point.
+
+When you get to integration, construct the RMS error by integrating over a range.
