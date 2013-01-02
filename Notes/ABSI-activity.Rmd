@@ -1,6 +1,8 @@
 Quantifying Body Shape
 ========================================================
 
+#### Daniel Kaplan, `r I(date())`
+
 ```{r include=FALSE}
 require(mosaic)
 opts_chunk$set(tidy=FALSE,fig.width=3,fig.height=3,comment=NA)
@@ -25,7 +27,7 @@ More useful as an index of obesity is weight adjusted for height. That is, the i
 Sticking with the idea of "normal," one way to construct a model of weight as a function of height is to fit a function to observed data.  The data in `BodyFat.csv` can be used for this purpose; it contains many measurements of individual people including weight, height, body fat percentage, waist circumference, and so on.
 
 Reading in the data and plot it.
-```{r}
+```{r message=FALSE}
 body = fetchData("BodyFat.csv")
 plotPoints(Weight ~ Height, data=body)
 ```
@@ -101,17 +103,13 @@ An [analysis of all cause mortality](http://www.digitalnewsrelease.com/?q=jama_3
 
 ### Extending BMI
 
-Although BMI may be useful for indicating risk of premature death, there are aspects of body shape that BMI does not capture.  In particular, fit people with relatively high muscle mass and low body fat have a misleadingly high BMI --- muscle is denser than body fat.
+Although BMI may be useful for indicating risk of premature death, there are aspects of body shape that BMI does not capture.  In particular, fit people with relatively high muscle mass and low body fat have a misleadingly high BMI --- muscle is denser than body fat.  There's evidence that not all forms of body fat impose the same risk.  In an article in the [New York Times](http://www.nytimes.com/2013/01/02/health/study-suggests-lower-death-risk-for-the-overweight.html?_r=0), Dr. Kamyar Kalantar-Zadeh, professor of medine and public health at the University of California, Irvine, stated, “Fat per se is not as bad as we thought.  What is bad is a type of fat that is inside your belly. “Non-belly fat, underneath your skin in your thigh and your butt area — these are not necessarily bad.”
 
-A simple way to operationalize the information contained in muscle mass and body fat is to consider waist circumference (WC) along with height and weight.  There are many ways to do this.  One approach is to modify the BMI index to include waist circumference.  But how to do this?
+A simple way to measure belly fat is waist circumference (WC) which can be considered along with height and weight. One approach is to modify the BMI index to include waist circumference.  But how to do this?
 
-A simple modification is based on the idea that higher waist circumference for a given BMI increases risk of premature death: Multiply the BMI by waist circumference to create an $mBMI$ index,
-$$ mBMI_0 = BMI \times WC .$$
-Multiplication, rather than addition, is appropriate because of the units issue. WC has different units than BMI, so if they were being added, some conversion of WC to the units of BMI would be called for.  
-
-Another approach is to construct an index that includes WC, but which doesn't duplicate the information that's already in BMI. Such an index has been proposed by [Krakauer and Krakauer](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504).  They call it "A Body Shape Index" (ABSI) and describe it as a way of adjusting WC for BMI and height, so that the ABSI index avoids overlap with BMI and height.  Their definition is:
+One approach is to construct an index that includes WC, but which doesn't duplicate the information that's already in BMI. Such an index has been proposed by [Krakauer and Krakauer](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504).  They call it "A Body Shape Index" (ABSI) and describe it as a way of adjusting WC for BMI and height, so that the ABSI index avoids overlap with BMI and height.  Their definition is:
 $$ABSI = \frac{WC}{BMI^{2/3}height^{1/2}} .$$
-In interpreting this formula, think of $BMI^{2/3}height^{1/2}$ as a model for the information in WC that is already contained in BMI and height.  By comparing the actual WC to the model WC, the ABSI index attempts to present the information in WC that is not already contained in BMI and height.
+In interpreting this formula, think of $BMI^{2/3}height^{1/2}$ as a model for the information in WC that is already contained in BMI and height.  By comparing the actual WC to the model WC, the ABSI index attempts to present the information in WC that is not already contained in BMI and height.  ABSI indicates whether actual WC is higher or lower than would be predicted from a model based on BMI and height.
 
 But why this particular functional form?  Why multiply BMI by height, why those particular exponents?
 

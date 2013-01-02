@@ -39,7 +39,7 @@
 
 ##### Interactive: Technology: Accessing the web server and RStudio (15 min)
 
-* Introduction to enough R to let them load and plot data
+* Introduction to enough R to load and plot data
     * `fetchData()`
     * `plotPoints()`
     
@@ -52,9 +52,7 @@ At this point, just enter the forms, without much discussion.
 
 ##### ACTIVITY: [Eyeballing Parameters](Notes/Eyeballing-Parameters.html) (20 min)
 
-
-
-* Load in the data files and find the parameters.  Data files illustrate several of the function types:
+* Load in the data files and find the parameters.  
     
 
 #### Summary
@@ -74,14 +72,17 @@ Create and display a document summarizing the findings.
 
 1. Find the flow [from PREP 2012](http://prep2012.mosaic-web.org/Topics/OrangeJuiceFlow/OrangeJuice.html)
 2. [Linear and Quadratic approximations via derivatives](Notes/Derivs-and-Approximations.html). **TO DO: put `slideX0` in `fetchData()` repository
-3. Curvature
-4. [Kepler and Mars](Notes/Kepler-Mars.html) (Task 3)
+
+**Going Further**
+* [Kepler and Mars](Notes/Kepler-Mars.html) (Task 3)
 
 ###### Integration 
 
-1. Given the flow, find the volume.  (From StartR)
+1. [From flow to volume](Notes/Flow-to-Volume.html) Given the flow, find the volume.  (From StartR)
 2. RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of [linear and quadratic appoximations](Notes/Derivs-and-Approximations.html))
-3. Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
+
+**Going Further**
+Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
 
 ##### Some Statistics (40 mins)
 
@@ -101,7 +102,7 @@ Document: [How to get a quick estimate of sampling variation](Notes/Sampling-Var
 
 #### Noon 
 
-Lunch at the Marina Kitchen in the Marriott.  Free to participants.
+Lunch at the Marina Kitchen in the Marriott. Free to participants. [Lunch menu](Logistics/lunch.html)
 
 #### 1:15 resume
 
@@ -173,22 +174,7 @@ Optimization
 
 -------------
 
-### Lunch Menu
 
-Choice of:
-
-* Grilled Flat Iron Steak Salad with Butter Lettuce, Arugula, Roasted Tomato, Beef Bacon and Balsamic Blue Cheese Dressing 
-
-* Chicken Mozzarella Sandwich served Warm with Arugula Sun Dried Tomato Tapenade - $15.00 per person 
-
-* Grilled Portobello Mushroom Sandwich with Zucchini and Goat Cheese - $15.00 per person
- 
-Desert:
-Mini Slice of Daily New York Style Cheesecake - $4.00 per person
- 
-Coffee, tea, iced tea and soft drinks included with meal.
-
--------------
 
 ### Orphaned Ideas
 

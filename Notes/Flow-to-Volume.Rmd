@@ -1,0 +1,60 @@
+Integration: Flow to Volume
+=======================
+
+```{r include=FALSE}
+require(mosaic)
+```
+
+![Deepwater Horizon leak](http://gcaptain.com/wp-content/uploads/2011/09/dwh_img01_171715_172293.jpg)
+
+The photo shows oil leaking from the **Deepwater Horizon** platform in the Gulf of Mexico in 2010.  An important question is how much oil was leaked altogether.  The picture shows the **flow** of oil; the **volume** leaked is the accumulation of flow over the duration of the spill.
+
+In the case of the **Deepwater Horizon**, considerable expertise was needed to estimate the flow rate from pictures like the above.  Let's work with a simpler setting to illustrate how flow can be translated into volume.
+
+
+![Leaking Pipe](http://www.pipefuze.com/wp-content/uploads/leaking_pipe.jpg)
+
+Consider how to measure the water lost in a leak from a pipe.  It's easy to measure the flow from the leak; put a cup to catch the leaking fluid, then use a stopwatch to time how long it takes to fill up the cup.  Imagine that you have done this occasionally and collected the following data over an hour:
+
+
+
+time (min) | 0 | 5 | 11 | 15 | 22 | 28 | 39 | 45 | 52 | 61 
+-----------|---|---|----|----|----|----|----|----|----|----
+filltime (sec)| 7 | 9 | 12 | 14 | 16 | 17 | 18 | 18 | 19 | 17  
+ 
+
+The flow rate has units of cups per second; you can calculate it as 1/FillTime.  Evidently, the leak is slowing at first, then levels out, then seems to be increasing toward the end of the measurements.
+
+```{r message=FALSE}
+Leak = fetchData("startR/leak-example.csv")
+plotPoints(1/filltime ~ time, data=Leak,ylim=c(0,.15),
+           ylab="Flow (cups/sec)",
+           xlab="Clock time (min)")
+```
+
+You know the flow, but want to know the total amount of water that has leaked.  Among the possibilities:
+* Instead of a cup, put a bucket under the leak and catch all the  water.  Then you can measure how much is in the bucket.
+* Use the anti-derivative of flow.
+
+Remember, flow is the time derivative of volume.  Therefore, volume is the anti-derivative of flow with respect to time.
+
+To construct the anti-derivative function, you first must put the derivative in the form of a function.  A spline through the measurements seems suitable.  (The data have been stored as `"startR/leak-example.csv"`.)
+
+```{r}
+flow = spliner( 1/filltime ~ time, data=Leak)
+volume = antiD( flow(time)~time )
+plotFun(volume(t)~t,t.lim=c(0,60),
+        xlab="Time (min)", ylab="Volume (cups/s min)")
+```
+
+The anti-derivative function thus calculated, `volume`, is first and foremost a function of time.  The derivative of the function is the `flow` function, which is why the slope of `volume` is steep at first and then climbs steadily.
+
+Now suppose you wanted to know how much  water has leaked during a particular interval of time, say from 10 minutes to 30 minutes.  Easy.  Put a empty bucket under the leak at time 10 minutes, then remove it at time 30 minutes and measure how much water has accumulated.  Or, leave the bucket where it is, mark how much water is in the bucket at 10 minutes, record again at 30 minutes, and subtract.  This second method is the strategy by which an anti-derivative function is used to find the accumulation:
+
+```{r}
+volume(time=30)-volume(time=10)
+```
+
+Keep in mind that using the anti-derivative in this way to compute an integral, accomplishes the same thing you could do by accumulating the flow in a bucket, or multiplying the average flow by the duration.
+
+In interpreting this number, 1.335, it's important, as always, to take into account the units.  The output of an anti-derivative function always has units that are the product of the units of the derivative function (cups/second in this example) and the variable of integration (minutes here).  So the number is really 1.335 cup$\cdot$minute/second.  This may seem odd for a volume, but remember that 60 seconds equals a minute, so a minute/second is just 60 second/second is just 60.  So the volume is $1.335 \times 60 = 80.1$ cups.
