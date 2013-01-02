@@ -6,6 +6,8 @@
 
 **Location**: [Marriott Marquis San Diego](http://www.marriott.com/hotels/maps/travel/sandt-san-diego-marriott-marquis-and-marina/) in the [Carlsbad/Cardiff Rooms](http://www.marriott.com/hotelwebsites/us/s/sandt/SANDT_PDF/SANDT%20All-FloorDiagram2012-Color.pdf): South Tower --- Level 3
 
+[**GitHub Web Page**](http://dtkaplan.github.com/JMM2013)
+
 #### [Description](http://www.causeweb.org/workshop/jmm13_mosaic/)
 
 > This one-day workshop is designed to help instructors move toward teaching introductory calculus in a modeling- and data-oriented way. The parameters of basic functions are often treated casually in introductory calculus, as if they were a nuisance or merely fodder for the chain rule. In the first half of the workshop, we'll show how to interpret them physically, how to relate them to data, and how to use them for model building. The second half emphasizes polynomial approximation, the relationship between Taylor series and model fitting, and model building using information about derivatives. A small, general purpose mathematical toolkit suffices to build and interpret compelling models in a very wide range of settings spanning economics, biology, physics, etc. We'll provide in-class activities, assignments, student project topics, and example exam questions. Both paper-and-pencil as well as computer-oriented approaches (using R, Sage, or Mathematica) will be featured, drawing on the materials developed through the NSF-supported Project MOSAIC, which aims to construct strong connections in teaching modeling, calculus, statistics, and computation. Participants are encouraged to bring a laptop. If you don't currently use software for teaching calculus, we'll set you up with the free R system running through a web browser.
@@ -78,11 +80,14 @@ Create and display a document summarizing the findings.
 
 ###### Integration 
 
-1. [From flow to volume](Notes/Flow-to-Volume.html) Given the flow, find the volume.  (From StartR)
-2. RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of [linear and quadratic appoximations](Notes/Derivs-and-Approximations.html))
+1. [Integration by Eye](https://dl.dropbox.com/u/5098197/Math135/In-Class/hiv-graph.pdf)
+2. [From flow to volume](Notes/Flow-to-Volume.html) Given the flow, find the volume.  (From StartR)
+
+
 
 **Going Further**
-Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
+* Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
+* RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of [linear and quadratic appoximations](Notes/Derivs-and-Approximations.html))
 
 ##### Some Statistics (40 mins)
 
@@ -90,15 +95,17 @@ Traffic light capacity (integrating a hill function). [from PREP 2012](http://pr
 
 Manifest versus latent function forms:
 * Income-Housing (manifest form)
-* Space-Shuttle
+* Cooling water --- fitting the two exponentials.
+* Hawaii tides --- what is the period?
 
-* The criteria for `fitModel`
-* **TO DO** Write a function that fits a function form to a given $f(x)$ using least squares.  Have it sample $f(x)$ on a given range.
-
+Sampling Distribution
 * Sampling and resampling distributions
 * The standard error
 
-Document: [How to get a quick estimate of sampling variation](Notes/Sampling-Variation.html)
+ACTIVITY: [How to get a quick estimate of sampling variation](Notes/Sampling-Variation.html)
+
+**Going Further**
+* [Fitting a probability model](Likelihood.html)
 
 #### Noon 
 
@@ -120,8 +127,11 @@ Approximation
 
 ##### Activity: 
 
-* `mTalyor` applet.
-
+* `mTaylor` applet.
+```{r eval=FALSE,message=FALSE}
+fetchData("mTaylor.R")
+mTaylor( exp(-.2*x)*sin(x)~x,xlim=c(0,10))
+```
 Task: Use this to create a lesson plan on the quality of an approximation.
 
 
@@ -129,12 +139,13 @@ Task: Use this to create a lesson plan on the quality of an approximation.
 ##### Lecture: Power laws and where they come from: (15 min)
 
 * Units & Dimensional analysis
-    * Analysis of atomic bomb
+    * Analysis of the Trinity bomb yield
 * Allometrics
-    * Relationships in the internal combustion engine
     * Species-Area data `"http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv"`
+    * [Body Mass Index](ABSI-activity.html)
 
-Resource: The engine RPM versus BHP example.
+**Going Further**:
+* [Engine RPM versus power](https://dl.dropbox.com/u/5098197/Math135/In-Class/engine-speed.pdf).
 
 #### 2:15 break
 
@@ -146,11 +157,11 @@ Functions in two variables
 
 ##### Important Functional Forms
 * The Ideal Gas Law and the Law of Mass Action [PREP 2012](http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf)
-* [Cobb-Douglas](http://prep2012.mosaic-web.org/Topics/Cobb-Douglas/cobb-douglas.html)
-    * [Body shape index as a log form](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504) --- logs are important here because they capture proportional growth. [ABSI activity](ABSI-activity.html)
+* [Cobb-Douglas](http://prep2012.mosaic-web.org/Topics/Cobb-Douglas/cobb-douglas.html) and other power-laws, e.g. body shape: [ABSI activity](ABSI-activity.html)
 * The landscape functions: [mountain](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), valley, [hillside](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png), amphitheater
+* Random functions
 
-The modeling polynomial: 2nd order in two variables
+##### The modeling polynomial: 2nd order in two variables
 
 * [picking model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf)
 * Fitting and interpreting
@@ -165,10 +176,6 @@ The modeling polynomial: 2nd order in two variables
 
 * [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf): is it a reasonable model?
 * [Eyeballing interactions](http://dl.dropbox.com/u/5098197/Math135/In-Class/eyeball-partials.pdf)
-
-Optimization
-
-* [Health policy example](http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html)
 
 #### 4:00 Adjourn
 
