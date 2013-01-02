@@ -64,14 +64,12 @@ The power-law model estimated from the data suggests that an appropriate power o
 ```{r}
 coef(fpower)
 ```
-For simplicity of calculation, then, let's insist that the exponent be 2 and fit the model:
+The confidence interval indicates how precisely the coefficients are known.
 ```{r}
-fsimple = fitModel( Weight ~ A*Height^2, data=body)
-coef(fsimple)
-plotPoints(Weight ~ Height, data=body)
-plotFun(fpower(Height)~Height,add=TRUE,col="red")
-plotFun(fsimple(Height)~Height,add=TRUE,col="black")
+s = do(100)*coef(fitModel(Weight~A*Height^b,data=resample(body)))
+confint(s)
 ```
+The confidence interval on b includes the value 2. For simplicity of calculation when calculating the index for a person, then, let's set the exponent at b=2.
 
 For comparing the model weight to the actual weight, there are two basic approaches:
 1. Look at the residuals: actual weight minus model weight 
@@ -93,10 +91,13 @@ By putting together height and weight in this way, BMI incorporates the evident 
 
 The standard interpretation of BMI in adults is
 * below 18.5: underweight
-* 18.5-25: healthy weight
+* 18.5-25: normal weight
 * 25-30 overweight
 * 30-40: obese
 * 40+: morbidly obese
+
+An [analysis of all cause mortality](http://www.digitalnewsrelease.com/?q=jama_3867) associated with these different levels of BMI found that overweight is the category with lowest mortality.  An accompanying editorial in the *Journal of the American Medical Association* stated, “Not all patients classified as being overweight or having grade 1 obesity, particularly those with chronic diseases, can be assumed to require weight loss treatment. Establishing BMI is only the first step toward a more comprehensive risk evaluation.” (JAMA. 2013;309(1):87-88)
+
 
 ### Extending BMI
 
