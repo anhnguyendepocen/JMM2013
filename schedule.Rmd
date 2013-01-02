@@ -142,8 +142,11 @@ Resource: The engine RPM versus BHP example.
 
 Functions in two variables
 
+
+##### Important Functional Forms
 * The Ideal Gas Law and the Law of Mass Action [PREP 2012](http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf)
 * [Cobb-Douglas](http://prep2012.mosaic-web.org/Topics/Cobb-Douglas/cobb-douglas.html)
+    * [Body shape index as a log form](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504) --- logs are important here because they capture proportional growth. [ABSI activity](ABSI-activity.html)
 * The landscape functions: [mountain](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), valley, [hillside](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png), amphitheater
 
 The modeling polynomial: 2nd order in two variables
@@ -152,7 +155,12 @@ The modeling polynomial: 2nd order in two variables
 * Fitting and interpreting
    * Used car prices
 
-Starting partial derivatives
+##### Partial derivatives
+
+###### Body Fat Data [see Victor Addona's slides](http://www.mosaic-web.org/go/MCAST/materials/Sept-10-2010/Addona_MCAST_Sept_10.pdf)
+* What's the relationship between `BodyFat` and `Height`?  
+* What if we include `Weight`?
+* What if `Abdomen` circumference is included, too?
 
 * [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf): is it a reasonable model?
 * [Eyeballing interactions](http://dl.dropbox.com/u/5098197/Math135/In-Class/eyeball-partials.pdf)
