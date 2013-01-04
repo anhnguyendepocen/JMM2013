@@ -15,7 +15,12 @@ For each graph, choose an appropriate function form to represent the pattern sho
 
 <<include=FALSE>>=
 require(mosaic)
-opts_chunk$set(tidy=FALSE,fig.width=3,fig.height=3,comment=NA)
+trellis.par.set(theme=theme.mosaic())
+opts_chunk$set(
+  tidy=FALSE,
+  fig.width=3,
+  fig.height=3,
+  comment=NA)
 @
 
 \paragraph{Telephone}
@@ -63,7 +68,7 @@ plotPoints(water ~ time, data=Hawaii)
 Data about the size, power, and other characteristics of internal combustion engines.  (Source: Thomas McMahon and John Tyler Bonner (1983) {\em On Size and Life})
 <<engines,message=FALSE>>=
 Engines = fetchData("engines.csv")
-Engines = transform(rpm=RPM, bhp=BHP)
+Engines = transform(Engines, rpm=RPM, bhp=BHP)
 plotPoints(log(rpm)~log(bhp), data=Engines)
 @
 
