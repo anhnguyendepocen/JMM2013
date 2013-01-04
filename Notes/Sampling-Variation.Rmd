@@ -4,78 +4,142 @@ Estimating Sampling Variation
 ```{r include=FALSE}
 require(mosaic)
 require(xtable)
+trellis.par.set(theme=theme.mosaic())
 opts_chunk$set(tidy=FALSE, fig.width=3, fig.height=3)
 options(xtable.type="html")
 ```
 
-### Danny Kaplan, `r I(date())`
+#### Danny Kaplan and Randall Pruim, `r I(date())`
 
 Sampling variation refers to the uncertainty created by the sampling process.  If your data is just a sample, another data set will produce a somewhat different result.  The question we seek to answer is, "How much is *somewhat*?"
 
 The method used here is called **bootstrapping**.  Bootstrapping relies on a simulation of the sampling process called **resampling**: sampling from the sample.
 
-#### Start with your data and a model
+### Obtaining a model from data
 
 To illustrate, consider estimating the power-law exponent on the relationship between species number and land area.
 
 ```{r  fig.width=3,fig.height=3,message=FALSE}
-species = fetchData("http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv")
-plotPoints(Species ~ Area, data=species)
+Species = fetchData("http://www.math.smith.edu/~bbaumer/mth247/SpeciesArea.csv")
+plotPoints(Species ~ Area, data=Species)
 ```
 
-The model we seek to fit is Species = a Area^b.  Judging from the shape of the graph, Species goes roughly as the square-root of area, so use $b=0.5$ as the initial guess for the nonlinear parameter.  Finding the parameters is a straightforward application of `fitModel`:
+The model we seek to fit is $$latex \mathrm{Species} = a \mathrm{Area}^b \;.$$  Judging from the shape of the graph, Species goes roughly as the square-root of area, so use $latex b=0.5$ as the initial guess for the nonlinear parameter.  Finding the parameters is a straightforward application of `fitModel`:
 
 ```{r}
-fitModel( Species ~ a*Area^b, 
-          data=species, 
+SpeciesModel = fitModel( Species ~ a*Area^b, 
+          data=Species, 
           start=list(b=.5) )
+SpeciesModel
+coef(SpeciesModel)  # if we just want the coeffiecients
 ```
 
 It looks like a fourth-root model is appropriate.  But how precise is the estimate of the coefficient $b$?
 
-#### Package up the parameter estimation
-
-Write up the estimation calculation in a form that returns the values of interest.  Since $b$ is the parameter of interest here, we already have that form.  
-
-But to illustrate the process, suppose that we were interested in predicting the number of species in a land with area $2 \times 10^6$ km^2.  This would be an extrapolation, and extrapolations are generally unreliable, but here goes ...
-
+### Estimating parameter precision
+We begin by repeating what is above, but wrapping it in curly braces.  This tells R to treat the entire code block as a single expression.  We'll make use of this in the next 
+step.
 ```{r}
-{ mod = fitModel( Species ~ a*Area^b, 
-                  data=species, 
+{ SpeciesModel = fitModel( Species ~ a*Area^b, 
+                  data=Species, 
                   start=list(b=.5) )
-  mod( 2e6 ) 
+coef(SpeciesModel)
 }
 ```
 
-Note that the pair of commands has been put between curly braces.  That's the R syntax for grouping multiple statements into a single expression.
-
 #### Apply resampling and iterate
-
-Take your statement, appropriately packaged.  Wrap the data frame with `resample`.  Put `do(100)*` in front of the statement and assign the results so that you can access them later:
+Creating a resampling distribution is straightforward once we have gotten this far.
+Edit the code above as follows:
+ * Wrap the data frame with `resample`.  
+ * Put `do(500)*` in front of the expression, and 
+ * store the results so that you can access them later:
 
 ```{r}
-s = do(100)*
-  { mod = fitModel( Species ~ a*Area^b, 
-                  data=resample(species), 
+ResamplingDist = do(500)*
+  { SpeciesModel = fitModel( Species ~ a*Area^b, 
+                  data=resample(Species), 
                   start=list(b=.5) )
-              coef(mod) 
+              coef(SpeciesModel) 
   }
 ```
-Now you have a set of 100 resampling realizations.  This can be handled in stand ways.  For instance, to find the 95% confidence interval, use `confint`.
+Now we have a set of 500 resampling realizations.  We begin by looking at the variability in our estimated power graphically.
+```{r}
+densityplot( ~ b, data=ResamplingDist )  # we could also have done a histogram
+plotPoints( b ~ a, data=ResamplingDist)  
+```
+Notice that the coefficient estimates are not independent of each other.
+
+One common way to quantify sampling variability is with the **standard error**.  The 
+standard error is simply the standard deviation of the sampling distribution, which we can estimate using our resampling distribution.
+```{r}
+sd( ~ b, data=ResamplingDist )
+```
+Another standard way to present the precision is with a confidence interval.  
+For instance, to find the 95% confidence interval, use `confint`.
 
 ```{r}
-confint(s)
+confint(ResamplingDist)
+```
+A 95% confidence (when based on normal distribution theory) stretches roughly 2 
+standard errors in each direction from the estimate.
+```{r}
+se <- sd( ~b, data=ResamplingDist )
+coef(SpeciesModel)['b'] + c(-1,1) * 2 * se
 ```
 
-Returning to the coefficient $b$ ...
+Alternatively, we could take the middle 95% of the samping distribution as our interval.
 ```{r}
-s2 = do(100)*
-   {mod = fitModel( Species ~ a*Area^b, 
-                  data=resample(species), 
+qdata(c(0.025,0.975), b, data=ResamplingDist)
+```
+
+### Using the model to make predictions
+
+#### A point estimate
+
+Suppose that we were interested in predicting the number of species in a land with 
+area $2 \times 10^6$ km^2.  This would be an extrapolation, and extrapolations are generally unreliable, but here goes ...
+
+
+The procedure is essentially the same as before, but now we compute an estimated response
+from our model rather that estimated coefficients.
+
+First we do this with our original data to get a **point estimate**, a single number that
+is our best guess but does not reveal anything about its precision.
+```{r}
+{ SpeciesModel = fitModel( Species ~ a*Area^b, 
+                  data=Species, 
                   start=list(b=.5) )
-    coef(mod)}
+SpeciesModel( Area=2e6 ) 
+}
 ```
-And the confidence intervals:
+
+#### Interval estimates via resampling 
+
+Now we would like to get an interval estimate via resampling.
 ```{r}
-confint(s2)
+ResamplingDist2 = do(500)*
+  { SpeciesModel = fitModel( Species ~ a*Area^b, 
+                  data=resample(Species), 
+                  start=list(b=.5) )
+              SpeciesModel(2e6) 
+  }
 ```
+Now we have a set of 500 resampling realizations.   
+```{r}
+densityplot( ~ result, data=ResamplingDist2)
+```
+
+
+To find the 95% confidence interval, use `confint`.
+
+```{r}
+confint(ResamplingDist2)
+```
+
+### Your turn
+
+Fit a model to data of your own choosing.  Give point and interval estimates for 
+the parameters of your model and for an estimated response produced by your model.
+You might like to return to
+<a href="../Notes/Eyeballing-Parameters.pdf">Eyeballing Parameters</a> for some 
+exmple data sets and models.
