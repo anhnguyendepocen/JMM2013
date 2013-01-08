@@ -1,0 +1,15 @@
+Taylor Polynomials vs Least Squares Fits
+========================================================
+
+This interactive applet can be used (if you are in RStudio) to investigate the differences between Taylor Polynomial and Least Squares approximations to functions.
+```{r,include=FALSE}
+require(mosaic)
+```
+
+```{r,eval=FALSE}
+fetchData("mTaylor.R")
+mTaylor(exp(-0.2 * x) * sin(x) ~ x, xlim = c(0, 10))
+```
+
+One could also study other measures of fit, like MISE (mean integrated squared error), or
+its square root (RMS).
