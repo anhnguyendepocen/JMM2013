@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title><a href="http://www.causeweb.org/workshop/jmm13_mosaic/">Description</a></title>
+<title>Functions, Parameters, and Fitting for Teaching Calculus</title>
 
 <style type="text/css">
 body, td {
@@ -145,9 +145,7 @@ hr {
 </head>
 
 <body>
-<p>% Functions, Parameters, and Fitting for Teaching Calculus
-% Daniel Kaplan; Randall Pruim
-%</p>
+<h1>Functions, Parameters, and Fitting for Teaching Calculus</h1>
 
 <p><strong>Date</strong>: Tuesday, January 8th, 2013; 9:00am - 4:00pm</p>
 
@@ -179,6 +177,7 @@ hr {
 <ul>
 <li><a href="http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf">R/mosaic Cheat Sheet</a></li>
 <li><a href="Notes/Eyeballing-Parameters.pdf">Eyeballing Parameters</a></li>
+<li><a href="Handouts/TukeyBulge.pdf">Tukey&#39;s Bulge Rules</a></li>
 </ul>
 
 <h4>Other Resources:</h4>
@@ -190,13 +189,40 @@ hr {
 
 <h2>Schedule and Outline</h2>
 
-<h4>9am: Functions and Parameters</h4>
+<p>Workshop = Work + Shop</p>
+
+<p>Outline of the day: Four themes</p>
+
+<ol>
+<li>Anatomy of a (Mathematical) Model</li>
+<li>Models and Calculus (What does Calculus tell me about my model?)</li>
+<li>Fitting Models (How do I use data?)</li>
+<li>Model Creation (What model(s) should I fit?)</li>
+</ol>
+
+<p>We&#39;ll divide the day up into 4 sessions with approximately this schedule:</p>
+
+<ul>
+<li>9-10:15  Session 1</li>
+<li>10:15-10:30  Break</li>
+<li>10:30-11:45  Session 2</li>
+<li>11:45-1:15  Lunch at the Marina Kitchen in the Marriott.  Free to participants.</li>
+<li>1:10-2:30  Session 3</li>
+<li>2:30-2:45  Break</li>
+<li>2:45-4:00  Session 4</li>
+</ul>
+
+<h3>Introduction</h3>
+
+<p>What is a model?  What is modeling?</p>
+
+<h3>Anatomy of a Model: Functions and Parameters</h3>
 
 <p><a href="Notes/Introduction.html">Introduction</a></p>
 
-<p><a href="Activities/Introduction/introductory-activity.html">Introductory activity</a> (15 min)</p>
+<p><a href="Activities/Introduction/introductory-activity.html">Introductory activity</a> (15 min) </p>
 
-<h5>Interactive: Technology: Accessing the web server and RStudio (15 min)</h5>
+<h4>Interactive: Technology: Accessing the web server and RStudio (15 min)</h4>
 
 <ul>
 <li>Introduction to enough R to let them load and plot data
@@ -204,20 +230,25 @@ hr {
 <ul>
 <li><code>fetchData()</code></li>
 <li><code>plotPoints()</code></li>
+<li>Assignment with <code>=</code> or <code>&lt;-</code></li>
 </ul></li>
 </ul>
 
-<h5>Compiling the list of functions and parameterizations (15 min)</h5>
+<h4>Compiling the list of functions and parameterizations (15 min)</h4>
 
 <p>At this point, just enter the forms, without much discussion.  </p>
 
-<h5>ACTIVITY: <a href="Notes/Eyeballing-Parameters.html">Eyeballing Parameters</a> (20 min)</h5>
+<p>Use R Markdown to record these live and to demo how R Markdown works.</p>
+
+<hr/>
+
+<h4>ACTIVITY: <a href="Notes/Eyeballing-Parameters.html">Eyeballing Parameters</a> (20 min)</h4>
 
 <ul>
 <li>Load in the data files and find the parameters.  Data files illustrate several of the function types:</li>
 </ul>
 
-<h4>Summary</h4>
+<h3>Summary</h3>
 
 <p>Create and display a document summarizing the findings.  </p>
 
@@ -225,9 +256,7 @@ hr {
 <li>A template document on <a href="functions-parameters.html">Calculus Functions and their Parameters</a></li>
 </ul>
 
-<h4>10:15 break</h4>
-
-<h4>10:30 Theme Fitting</h4>
+<h3>Calculus and Models</h3>
 
 <h5>Catch up on function and parameter document (5min)</h5>
 
@@ -250,43 +279,42 @@ hr {
 <li>Traffic light capacity (integrating a hill function). <a href="http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html">from PREP 2012</a></li>
 </ol>
 
-<h5>Some Statistics (40 mins)</h5>
+<h3>Fitting Models</h3>
 
-<h6>Lecture &mdash; Fitting and Confidence intervals (15 mins)</h6>
+<p>Document: <a href="Notes/Sampling-Variation.html">How to get a quick estimate of sampling variation</a></p>
+
+<ul>
+<li>Best fit models
+
+<ul>
+<li>The criteria for <code>fitModel</code></li>
+<li><strong>TO DO</strong> Write a function that fits a function form to a given \( f(x) \) using least squares.  Have it sample \( f(x) \) on a given range.</li>
+</ul></li>
+</ul>
+
+<hr/>
+
+<ul>
+<li>Sampling and resampling distributions</li>
+<li>The standard error</li>
+</ul>
+
+<h3>Creating Models</h3>
 
 <p>Manifest versus latent function forms:</p>
 
 <ul>
 <li>Income-Housing (manifest form)</li>
 <li><p>Space-Shuttle</p></li>
-<li><p>The criteria for <code>fitModel</code></p></li>
-<li><p><strong>TO DO</strong> Write a function that fits a function form to a given \( f(x) \) using least squares.  Have it sample \( f(x) \) on a given range.</p></li>
-<li><p>Sampling and resampling distributions</p></li>
-<li><p>The standard error</p></li>
-</ul>
-
-<p>Document: <a href="Notes/Sampling-Variation.html">How to get a quick estimate of sampling variation</a></p>
-
-<h4>Noon</h4>
-
-<p>Lunch at the Marina Kitchen in the Marriott.  Free to participants.</p>
-
-<h4>1:15 resume</h4>
-
-<h5>Lecture: Motivation for some functional forms (15 min)</h5>
-
-<p>Approximation</p>
-
-<ul>
-<li>Linearization
+<li><p>Linearization</p>
 
 <ul>
 <li>Hooke&#39;s Law</li>
 <li>Newton&#39;s Law of cooling (<a href="Resources/Stan-Cooling.pdf">Stan&#39;s paper</a> showing different functional forms.)</li>
 <li>Bi-linear: Idea gas law, law of mass action</li>
 </ul></li>
-<li>Polynomials, Taylor series and least squares</li>
-<li>Sine waves and orthogonality: our emphasis on polynomials pre-dates the development of wave- and oscillation-based technology.</li>
+<li><p>Polynomials, Taylor series and least squares</p></li>
+<li><p>Sine waves and orthogonality: our emphasis on polynomials pre-dates the development of wave- and oscillation-based technology.</p></li>
 </ul>
 
 <h5>Activity:</h5>
@@ -315,10 +343,6 @@ hr {
 
 <p>Resource: The engine RPM versus BHP example.</p>
 
-<h4>2:15 break</h4>
-
-<h4>2:30</h4>
-
 <p>Functions in two variables</p>
 
 <ul>
@@ -331,6 +355,7 @@ hr {
 
 <ul>
 <li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf">picking model terms</a></li>
+<li>Transformations</li>
 <li>Fitting and interpreting
 
 <ul>
@@ -350,8 +375,6 @@ hr {
 <ul>
 <li><a href="http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html">Health policy example</a></li>
 </ul>
-
-<h4>4:00 Adjourn</h4>
 
 <hr/>
 

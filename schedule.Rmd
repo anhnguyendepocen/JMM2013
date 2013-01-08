@@ -1,6 +1,5 @@
-% Functions, Parameters, and Fitting for Teaching Calculus
-% Daniel Kaplan; Randall Pruim
-%
+Functions, Parameters, and Fitting for Teaching Calculus
+========================================================
 
 **Date**: Tuesday, January 8th, 2013; 9:00am - 4:00pm
 
@@ -23,6 +22,7 @@
 
 * [R/mosaic Cheat Sheet](http://dtkaplan.github.com/Statistical-Modeling-A-Fresh-Approach/Blog/EnoughR.pdf)
 * [Eyeballing Parameters](Notes/Eyeballing-Parameters.pdf)
+* [Tukey's Bulge Rules](Handouts/TukeyBulge.pdf)
 
 #### Other Resources:
 
@@ -31,40 +31,61 @@
 
 ## Schedule and Outline
 
-#### 9am: Functions and Parameters
+Workshop = Work + Shop
+
+Outline of the day: Four themes
+
+ 1. Anatomy of a (Mathematical) Model
+ 2. Models and Calculus (What does Calculus tell me about my model?)
+ 3. Fitting Models (How do I use data?)
+ 4. Model Creation (What model(s) should I fit?)
+
+ 
+We'll divide the day up into 4 sessions with approximately this schedule:
+
+ * 9-10:15  Session 1
+ * 10:15-10:30  Break
+ * 10:30-11:45  Session 2
+ * 11:45-1:15  Lunch at the Marina Kitchen in the Marriott.  Free to participants.
+ * 1:10-2:30  Session 3
+ * 2:30-2:45  Break
+ * 2:45-4:00  Session 4
+ 
+### Introduction
+
+  What is a model?  What is modeling?
+  
+### Anatomy of a Model: Functions and Parameters
 
 [Introduction](Notes/Introduction.html)
 
-[Introductory activity](Activities/Introduction/introductory-activity.html) (15 min)
+[Introductory activity](Activities/Introduction/introductory-activity.html) (15 min) 
 
-##### Interactive: Technology: Accessing the web server and RStudio (15 min)
+#### Interactive: Technology: Accessing the web server and RStudio (15 min) 
 
 * Introduction to enough R to let them load and plot data
     * `fetchData()`
     * `plotPoints()`
+    * Assignment with `=` or `<-`
     
-    
-##### Compiling the list of functions and parameterizations (15 min)
+#### Compiling the list of functions and parameterizations (15 min) 
 
 At this point, just enter the forms, without much discussion.  
 
+Use R Markdown to record these live and to demo how R Markdown works.
 
+------
 
-##### ACTIVITY: [Eyeballing Parameters](Notes/Eyeballing-Parameters.html) (20 min)
-
-
+#### ACTIVITY: [Eyeballing Parameters](Notes/Eyeballing-Parameters.html) (20 min)
 
 * Load in the data files and find the parameters.  Data files illustrate several of the function types:
-    
 
-#### Summary
+### Summary
 Create and display a document summarizing the findings.  
 
 * A template document on [Calculus Functions and their Parameters](functions-parameters.html)
 
-#### 10:15 break
-
-#### 10:30 Theme Fitting
+### Calculus and Models
 
 ##### Catch up on function and parameter document (5min)
 
@@ -83,31 +104,25 @@ Create and display a document summarizing the findings.
 2. RMS approximation.  Showing that the constant approx is not as good as the linear is not as good as the quadratic. (See final part of [linear and quadratic appoximations](Notes/Derivs-and-Approximations.html))
 3. Traffic light capacity (integrating a hill function). [from PREP 2012](http://prep2012.mosaic-web.org/Topics/Integration/Traffic-Light-Capacity.html)
 
-##### Some Statistics (40 mins)
+### Fitting Models 
 
-###### Lecture --- Fitting and Confidence intervals (15 mins) 
+Document: [How to get a quick estimate of sampling variation](Notes/Sampling-Variation.html)
+
+* Best fit models
+  * The criteria for `fitModel`
+  * **TO DO** Write a function that fits a function form to a given $f(x)$ using least squares.  Have it sample $f(x)$ on a given range.
+
+-----
+
+* Sampling and resampling distributions
+* The standard error
+
+### Creating Models
 
 Manifest versus latent function forms:
 * Income-Housing (manifest form)
 * Space-Shuttle
 
-* The criteria for `fitModel`
-* **TO DO** Write a function that fits a function form to a given $f(x)$ using least squares.  Have it sample $f(x)$ on a given range.
-
-* Sampling and resampling distributions
-* The standard error
-
-Document: [How to get a quick estimate of sampling variation](Notes/Sampling-Variation.html)
-
-#### Noon 
-
-Lunch at the Marina Kitchen in the Marriott.  Free to participants.
-
-#### 1:15 resume
-
-##### Lecture: Motivation for some functional forms (15 min)
-
-Approximation
 
 * Linearization
     * Hooke's Law
@@ -135,10 +150,6 @@ Task: Use this to create a lesson plan on the quality of an approximation.
 
 Resource: The engine RPM versus BHP example.
 
-#### 2:15 break
-
-
-#### 2:30
 
 Functions in two variables
 
@@ -149,6 +160,7 @@ Functions in two variables
 The modeling polynomial: 2nd order in two variables
 
 * [picking model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf)
+* Transformations
 * Fitting and interpreting
    * Used car prices
 
@@ -161,7 +173,6 @@ Optimization
 
 * [Health policy example](http://prep2012.mosaic-web.org/Topics/Optimization/QALY3.html)
 
-#### 4:00 Adjourn
 
 -------------
 

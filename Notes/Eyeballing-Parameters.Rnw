@@ -1,15 +1,18 @@
 \documentclass{article}
+
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage[margin=.5in]{geometry}
 \usepackage{multicol}
+\usepackage{language}
+
 \title{Eyeballing Parameters}
 \author{Daniel Kaplan}
 
 \begin{document}
 \maketitle
 
-For each graph, choose an appropriate function form to represent the pattern shown by the data and estimate, by eye, the parameters that will fit the data.
+For each graph, choose an appropriate function form to represent the pattern shown by the data and estimate, by eye, the parameters that will fit the data.  If you like, you can check to see how well your function represents the data using \function{plotFun()} with the option \option{add=TRUE}.
 
 \begin{multicols}{2}
 
@@ -18,8 +21,10 @@ require(mosaic)
 trellis.par.set(theme=theme.mosaic())
 opts_chunk$set(
   tidy=FALSE,
-  fig.width=3,
-  fig.height=3,
+  fig.width=4.5,
+  fig.height=3.8,
+  out.width=".45\\textwidth",
+  out.height=".38\\textwidth",
   comment=NA)
 @
 
@@ -28,6 +33,9 @@ The fraction of US households with a telephone, as a function of family income. 
 <<telephone,message=FALSE>>=
 inc = fetchData("Income-Housing.csv")
 plotPoints(Telephone~IncomePercentile,data=inc)
+# You should be able to do lots better 
+# than this poorly chosen function
+plotFun( 70 + .35*ip ~ ip, col='gray50', add=TRUE)
 @
 
 
@@ -185,15 +193,21 @@ plotPoints(Price ~ Age, data=cars)
 
 \paragraph{Kepler's Observations of Mars}
 Kepler's measurements of the position of Mars relative to the sun.
-(Data source: McLaughlin, Michael P. ( 1999 ) ``A Tutorial on
-  Mathematical Modelling'' \url{http://www.causascientia.org/math_stat/Tutorial.pdf} p. 21-23.)  The `Time` variable is measured as a Julian date; 0 is Greenwich noon, on 1 January 4713 BC.  Radii are in astronomical units (AU) --- the mean distance from the Earth to the Sun. 
+(Data source: McLaughlin, Michael P. ( 1999 ) 
+``A Tutorial on Mathematical Modelling'' 
+\url{http://www.causascientia.org/math_stat/Tutorial.pdf} p. 21-23.)  
+\variable{kepler.radius} and \variable{kepler.angle} are from Kepler's measurements of the 
+distance between mars and the sun and the angle as Mars sweeps out its orbit.
+Radii are in astronomical units (AU) --- the mean distance from the Earth to the Sun. 
+The \variable{time} variable is measured as a Julian date; 0 is Greenwich noon, on 1 January 4713 BC.  
 
 <<kepler,message=FALSE,fig.show="hold">>=
 kdata = fetchData("kepler-mars.csv")
-plotPoints( kepler.radius ~ kepler.angle, data=kdata, xlab="Angle",ylab="Radius" )
+plotPoints( kepler.radius ~ kepler.angle, data=kdata, xlab="angle (radians)",ylab="radius (au)" )
 kdata = transform(kdata, x=kepler.radius*cos(kepler.angle))
 kdata = transform(kdata, y=kepler.radius*sin(kepler.angle))
 plotPoints(y~x, data=kdata,col="red")
+plotPoints(0 ~ 0, col="yellow", cex=4, add=TRUE)  # plot the sun, too.
 @
 
 \end{document}

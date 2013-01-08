@@ -13,7 +13,8 @@ Kepler introduced the theory that planets move around the Sun in elliptically sh
 
 $$\mbox{radius} = \frac{A}{1 + B \cos \theta}$$
 
-The parameters $A$ and $B$ describe the shape of the ellipse.  $A$ is a typical radius (the ``semi-latus rectum'', if you must know) and $B$ is the {\em eccentricity}.  When the eccentricity is zero, the ellipse is a circle.
+The parameters $A$ and $B$ describe the shape of the ellipse.  $A$ is a typical radius (the ``semi-latus rectum'', if you must know) and $B$ is the **eccentricity**.  
+When the eccentricity is zero, the ellipse is a circle.
 
 The data in `kepler-mars.csv` contain the measurements Kepler used
 in studying the position of Mars, translated to modern units.  Also in the file are the actual position (computed from modern theory).  The time is measured in Julian days from Greenwich noon.   The radii are measured in Astronomical Units (AU).  One AU is the mean distance between the Earth and the Sun.
@@ -66,8 +67,8 @@ A = 1.51
 B = 0.0926
 r = A/(1 + B*cos(angs))
 plotPoints( r*sin(angs)~r*cos(angs), add=TRUE, type="l")
-# This is where it would be nice to have a plotPath() function, e.g.
-# plotPoints( c(r*cos(angs),r*sin(angs))~angs, angs.lim=c(0,2*pi))
+# The mosaic package does not yet have the ability to plot
+# parametric functions.  This is on the wish list.
 ```
 
 ### Task 3
