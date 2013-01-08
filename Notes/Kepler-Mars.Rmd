@@ -80,7 +80,7 @@ inverse-square law of gravitation.
 
 DERIVE THE expression for area swept out over time: 
 * The distance travelled is $r d\theta$
-* The area of the pie-shaped space swept out, approximating it as a triangle, is $\frac{1}{2} r^2 d\theta$.
+* The area of the pie-shaped space swept out, approximating it as a segment of a circle, is $\frac{1}{2} r^2 d\theta$.
 
 
 The rate of "sweeping out" of area is $\frac{1}{2} r^2 \frac{d\theta}{dt}$. To calculate this, you'll need a function $\theta(t)$ that you can differentiation to produce the function $\frac{d\theta}{dt}$.
