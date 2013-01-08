@@ -18,3 +18,19 @@ Accounts
 * jmm128 -- bravo
 * jmm129 -- charlie
 * jmm130 -- delta
+
+#### Starting Up
+
+1. Go to 192.168.1.2:8787
+2. Login with your assigned account: e.g. jmm10x and the corresponding password
+3. `require(mosaic)`
+4. `source("http://192.168.1.2:80/jmm-start.R")`
+
+### Web stuff
+
+Install in /var/www
+There's already an index there.
+
+Installing an R package
+sudo ./installRpackage (which is in my home directory)
+Password: math155

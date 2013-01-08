@@ -1,0 +1,182 @@
+Quantifying Body Shape
+========================================================
+
+#### Daniel Kaplan, `r I(date())`
+
+```{r include=FALSE}
+require(mosaic)
+opts_chunk$set(tidy=FALSE,fig.width=3,fig.height=3,comment=NA)
+```
+
+![LL Bean Women](http://www.llbean.com/shop/guidePages/guideSizes/images/s10_sig_sizing_on_core_woman.jpg) ![LL Bean Men](http://www.llbean.com/shop/guidePages/guideSizes/images/s10_sig_sizing_on_core_man.jpg)
+
+[Source: LL Bean online catalog]
+
+There are many measures of body shape, some of which are tailored to a particular purpose. For the purpose of fitting clothing, the measures shown above are often used, as are shoe size, hat size, etc.
+
+For describing how large a person is in general, height and weight are the most commonly used measures.  In recent years, there has been an increase in obesity and concerns about the health consequences of obesity.  It's therefore useful to have an index with which to measure obesity.
+
+There are many medical indices.  Body temperature is a widely used one.  There is a "normal" value for body temperature (37˚C or, equivalently, 98.6˚F).  Rather than thinking of a single normal value, it's more appropriate to consider a normal range.  For example, fever is often defined as a body temperature above 38˚C (or, just about the same, 100˚F).  Hypothermia is generally taken as 35˚C and below (or, below 95˚F).
+
+Imagine if weight were used as an index of obesity.  It goes in the right direction.  All other things being equal, higher weight corresponds to more obese.  But there is so much variation in human weight from one adult to another, that a "normal range" of weights would include all sorts of people, some of whom might be obese and some of whom underweight.  For instance, a very tall person might be quite heavy without being obese, but a very short person of the same weight could be quite obese.
+
+More useful as an index of obesity is weight adjusted for height. That is, the index can compare a person's actual weight to an ideal, model weight at the person's height. 
+
+### Building a model of weight as a function of height
+
+Sticking with the idea of "normal," one way to construct a model of weight as a function of height is to fit a function to observed data.  The data in `BodyFat.csv` can be used for this purpose; it contains many measurements of individual people including weight, height, body fat percentage, waist circumference, and so on.
+
+Reading in the data and plot it.
+```{r message=FALSE}
+body = fetchData("BodyFat.csv")
+plotPoints(Weight ~ Height, data=body)
+```
+
+There are two cases that are clearly outliers. To avoid an undue influence of these points on the overall pattern, you can simply remove them:
+```{r}
+body = subset(body, Height > 50 & Weight < 300)
+```
+
+There are many possible model forms that can be used.  Let's consider three:
+* a smoother
+* a straight-line model
+* a power-law model
+
+```{r}
+fsmooth = smoother(Weight~Height, data=body,,span=2)
+fline   = fitModel(Weight~a + b*Height, data=body)
+fpower  = fitModel(Weight~A*Height^b,data=body)
+```
+
+Which model to prefer?  They aren't in fact very different from one another.
+```{r heightmodels}
+plotPoints(Weight ~ Height, data=body)
+plotFun(fsmooth(Height)~Height, add=TRUE)
+plotFun(fline(Height)~Height,add=TRUE,col="green")
+plotFun(fpower(Height)~Height,add=TRUE,col="red")
+```
+
+Since the data don't argue strongly for one function instead of another, other criteria for choosing a functional form come into play.  Two such criteria are:
+1. Ease of calculation.  It's nice to have a form that is easy for people to calculate.
+2. The "scale invariance" argument, which suggests using a power-law model.
+
+Scale invariance has to do with relative change.  Consider two pairs of "normal"-weight people:  Alfred and Alan, and Betty and Beatrice.  Suppose that Alfred is 5% taller than Alan, and Betty is 5% taller than Beatrice.  Now you find out that Alfred weighs 10% more than Alan.  It's reasonable to suspect that Betty will be 10% heavier than Beatrice.  The model that's being applied here is that a proportional difference in height corresponds to a similar proportional difference in weight --- that the proportions are proportional.  In this case, the weight proportional difference is twice the height proportional difference.  This model pays no attention to the absolute heights of Alfred and Betty --- they might be quite different in height but still the relationships between proportions will apply.  This indifference to the absolute scale in the model is scale invariance.
+
+The power-law model estimated from the data suggests that an appropriate power on height is close to 2:
+```{r}
+coef(fpower)
+```
+The confidence interval indicates how precisely the coefficients are known.
+```{r}
+s = do(100)*coef(fitModel(Weight~A*Height^b,data=resample(body)))
+confint(s)
+```
+The confidence interval on b includes the value 2. For simplicity of calculation when calculating the index for a person, then, let's set the exponent at b=2.
+
+For comparing the model weight to the actual weight, there are two basic approaches:
+1. Look at the residuals: actual weight minus model weight 
+2. Look at the proportion: actual weight divided by model weight
+
+Again, scale invariance suggests a form for the comparison.  Suppose you found that a person was 25 pounds above their model weight.  That would be a lot for a small person, but not so much for a big person.  So better to do the comparison as a proportion.
+
+The index constructed in this way is 
+$$\frac{Weight}{0.036 Height^2} .$$
+
+When this index is substantially greater than 1, the person is substantially above their model weight.  When it's substantially less than 1, the person is substantially underweight.  To decide what "substantially" means, we'd want to look at weights for a large number of people and compare the index to various medical outcomes to see what values of the index indicate an elevated risk for medical problems.
+
+A further simplification of the index can be gotten by disposing of the parameter A in the power law.  This means that instead of a range near 1 being "normal" for the index, the normal range would be near some other value, to be determined by looking at which values correspond to an elevated risk.
+
+You may recognize the form of the above index as the same as that of the 
+*Body Mass Index*, [BMI](http://en.wikipedia.org/wiki/Body_mass_index), which combines height and weight 
+$$BMI = \frac{weight}{height^2}.$$
+By putting together height and weight in this way, BMI incorporates the evident fact that the meaning of weight depends on height --- a short person of a given weight might be overweight, but the same weight in a tall person might not be.  
+
+The standard interpretation of BMI in adults is
+* below 18.5: underweight
+* 18.5-25: normal weight
+* 25-30 overweight
+* 30-40: obese
+* 40+: morbidly obese
+
+An [analysis of all cause mortality](http://www.digitalnewsrelease.com/?q=jama_3867) associated with these different levels of BMI found that overweight is the category with lowest mortality.  An accompanying editorial in the *Journal of the American Medical Association* stated, “Not all patients classified as being overweight or having grade 1 obesity, particularly those with chronic diseases, can be assumed to require weight loss treatment. Establishing BMI is only the first step toward a more comprehensive risk evaluation.” (JAMA. 2013;309(1):87-88)
+
+
+### Extending BMI
+
+Although BMI may be useful for indicating risk of premature death, there are aspects of body shape that BMI does not capture.  In particular, fit people with relatively high muscle mass and low body fat have a misleadingly high BMI --- muscle is denser than body fat.  There's evidence that not all forms of body fat impose the same risk.  In an article in the [New York Times](http://www.nytimes.com/2013/01/02/health/study-suggests-lower-death-risk-for-the-overweight.html?_r=0), Dr. Kamyar Kalantar-Zadeh, professor of medine and public health at the University of California, Irvine, stated, “Fat per se is not as bad as we thought.  What is bad is a type of fat that is inside your belly. “Non-belly fat, underneath your skin in your thigh and your butt area — these are not necessarily bad.”
+
+A simple way to measure belly fat is waist circumference (WC) which can be considered along with height and weight. One approach is to modify the BMI index to include waist circumference.  But how to do this?
+
+One approach is to construct an index that includes WC, but which doesn't duplicate the information that's already in BMI. Such an index has been proposed by [Krakauer and Krakauer](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504).  They call it "A Body Shape Index" (ABSI) and describe it as a way of adjusting WC for BMI and height, so that the ABSI index avoids overlap with BMI and height.  Their definition is:
+$$ABSI = \frac{WC}{BMI^{2/3}height^{1/2}} .$$
+In interpreting this formula, think of $BMI^{2/3}height^{1/2}$ as a model for the information in WC that is already contained in BMI and height.  By comparing the actual WC to the model WC, the ABSI index attempts to present the information in WC that is not already contained in BMI and height.  ABSI indicates whether actual WC is higher or lower than would be predicted from a model based on BMI and height.
+
+But why this particular functional form?  Why multiply BMI by height, why those particular exponents?
+
+### Constructing a Waist Circumference Index
+
+
+
+#### Task 1
+
+* Find the BMI.  The standard units of BMI are metric: kg/m^2.  However the data in `BodyFat.csv` measures height in inches and weight in pounds.  To convert BMI in pounds/in^2 into the metric units, multiply by 703.
+```{r}
+body = transform(body, BMI = 703*Weight/Height^2)
+```
+* Plot out WC versus BMI.  What sort of functional forms might be appropriate for the relationship demonstrated by the data?
+
+One function form that's always worth considering is the straight-line approximation
+* Fit a straight-line model of WC versus BMI.  
+```{r} 
+m1 = fitModel(Abdomen ~ a*BMI+b, data=body)
+```
+* Overlay the model on the scatter plot. If the line is flat, the suggestion is that there is litle relationship between WC and BMI
+* Do R^2 here? 
+```{r}
+with(body, var(m1(BMI))/var(Abdomen))
+```
+
+There are all sorts of other model forms that might be appropriate.
+Another possible model is a power-law function:
+```{r}
+m2 = fitModel( Abdomen ~ a*BMI^b, data=body)
+```
+```{r}
+with(body, var(m2(BMI))/var(Abdomen))
+```
+
+
+QUESTIONS:
+* Which of the two models, `m1` or `m2` is a better fit?
+
+#### Adding in Height
+
+Now throw height into the mix: make a model of WC as a function of both BMI and height.
+
+##### Linear Model
+```{r}
+m3 = fitModel( Abdomen ~ a + b*BMI+d*Height,data=body)
+```
+
+```{r}
+with(body, var(m3(BMI=BMI,Height=Height))/var(Abdomen))
+```
+
+##### Power-Law Model
+
+```{r}
+m4 = fitModel( Abdomen ~ a*BMI^b*Height^d,data=body)
+```
+
+```{r}
+with(body, var(m4(BMI=BMI,Height=Height))/var(Abdomen))
+```
+
+QUESTIONS:
+* Which of the models, `m3`, or `m4`, is a better fit?
+* How does the power-law model you fit compare to the ABSI index?
+* How well does the ABSI model for WC compare to `m3` or `m4`?
+
+### Which Functional Form is Better?
+
+The choice of the power-law form reflects an idea that the index should be scale invariant and the calculational simplicity of having a single parameter --- the exponent --- on each variable.
